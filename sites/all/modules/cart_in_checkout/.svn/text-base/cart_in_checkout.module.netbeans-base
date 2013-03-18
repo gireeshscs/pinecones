@@ -1,0 +1,181 @@
+<?php
+
+/**
+ * Implementation of hook_menu().
+ */
+function cart_in_checkout_menu() {
+  $items['update_cart/%'] = array(
+    'title' => 'cart in checkout',
+    'description' => 'Configure the payment settings.',
+    'page callback' => 'cart_in_checkout_ajax_submit',
+    'access arguments' => array('access content'),
+  );
+  return $items;
+}
+
+/*
+ * implementation of hook_form_alter()
+ */
+function cart_in_checkout_form_alter(&$form, $form_state, $form_id){
+  switch ($form_id) {
+    case 'uc_cart_checkout_form':
+      $items = uc_cart_get_contents();
+
+      $p['items'] = array(
+		        '#type' => 'tapir_table',
+		        '#tree' => TRUE,
+      );
+
+      $context = array(
+		        'revision' => 'themed-original',
+		        'type' => 'amount',
+      );
+      	
+      $i = 0;
+      foreach ($items as $item) {
+        $display_item = module_invoke($item->module, 'cart_display', $item);
+        if (!empty($display_item)) {
+          $p['items'][$i] = $display_item;
+          $node = node_load($display_item['nid']['#value']);
+          if (empty($display_item['qty'])) {
+            $p['items'][$i]['qty'] = array(
+			              '#value' => '',
+            );
+          }
+          $description = $display_item['title']['#value'] ;
+          $p['items'][$i]['desc']['#value'] = $description;
+
+          $p['items'][$i]['title']['#type'] = 'value';
+          $p['items'][$i]['nid'] = array('#type' => 'value' , '#value' => $node->nid);
+          $p['items'][$i]['price'] = array(
+			            '#value' => uc_price($item->price, $context),
+			            '#theme' => 'uc_cart_view_price',
+          );
+
+
+
+          $p['items'][$i]['total'] = array(
+			            '#value' => uc_price($display_item['#total'], $context),
+			            '#theme' => 'uc_cart_view_price',
+          );
+          $i++;
+
+        }
+      }
+
+      $form['panes']['cart']['cart_review_table'] = tapir_get_table('uc_cart_view_table', $p['items']);
+
+      // add the price column
+      $form['panes']['cart']['cart_review_table']['#columns']['price'] = array('cell'=> 'Price', 'weight' =>3);
+
+      // unset the subtotal line
+      //unset($form['panes']['cart']['cart_review_table'][1]);
+
+
+      // Add the control buttons for updating and proceeding to checkout.
+      /*$form['panes']['cart']['cart_review_table']['update'] = array(
+      '#type' => 'submit',
+      '#value' => t('Update'),
+      '#submit' =>  array('cart_in_checkout_submit') ,
+
+      );*/
+     // array_unshift($form['#submit'] , 'cart_in_checkout_submit');
+      $form['#validate'][] = 'cart_in_checkout_validate_form_addtocart';
+//echo '<pre>';print_r($form);die;
+      unset($form['panes']['cart']['cart_review_table'][0]['remove']);
+      unset($form['panes']['cart']['cart_review_table']['#columns']['remove']);
+      $form['panes']['cart']['cart_review_table']['#qty']['price']['weight'] = -11;
+      $form['panes']['cart']['cart_review_table']['#columns']['price']['weight'] = 5;
+      $form['panes']['cart']['cart_review_table']['#columns']['total']['weight'] = 6;
+
+      break;
+  }
+
+}
+
+/*
+ * added a submit function to update cart on checkout page
+ */
+function cart_in_checkout_submit($form , $form_state){
+  $cart['items'] = $form_state['values']['panes']['cart']['cart_review_table'];
+
+  // Update the items in the shopping cart based on the form values.
+  uc_cart_update_item_object((object)$cart);
+}
+
+/*
+ * added a submit function to update cart on checkout page
+ */
+function cart_in_checkout_ajax_submit(){
+  $qty = explode("-" , arg(1));
+  
+  $items = uc_cart_get_contents();
+  
+  print_r($qty);
+  foreach($items AS $k => $item){
+    $cart['items'][] = array(
+      'nid' => $item->nid,
+      'module' => 'uc_product',
+      'title' => l($item->title , drupal_get_path_alias('node/'.$item->nid)),
+      'data' => serialize($item->data),
+      'qty' => $qty[$k]
+    );
+  }
+
+  if(ajax_cart_in_checkout_validate_form_addtocart($cart['items']) == 'no'){
+    // Update the items in the shopping cart based on the form values.
+    uc_cart_update_item_object((object)$cart);
+  }
+
+  drupal_goto('cart/checkout');
+}
+
+
+
+/*
+ * added a function to validate stock on cart update
+ */
+function cart_in_checkout_validate_form_addtocart($form, &$form_state) {
+  $items = $form_state['values']['panes']['cart']['cart_review_table'];
+
+  // unserialize data
+  foreach ($items as $k => $item) {
+    // Validate unless the item was being removed
+    if (!$item['remove']) {
+      $data = unserialize($item['data']);
+      $stockinfo = uc_out_of_stock_getstockinfo($item['nid'], $data['attributes']);
+      $qty = $item['qty'];
+      if ($stockinfo) {
+        if ($stockinfo['stock'] - $qty < 0) {
+          $error = _uc_out_of_stock_get_error('not_enough', $item['nid'], $data['attributes'], $stockinfo['stock'], $qty);
+          form_set_error("items][$k][qty", $error);
+        }
+      }
+    }
+  }
+}
+
+/*
+ * added a function to validate stock on cart update
+ */
+function ajax_cart_in_checkout_validate_form_addtocart($items) {
+  $flag = 'no';
+  //$items = $form_state['values']['panes']['cart']['cart_review_table'];
+  // unserialize data
+  foreach ($items as $k => $item) {
+    // Validate unless the item was being removed
+    if (!$item['remove']) {
+      $data = unserialize($item['data']);
+      $stockinfo = uc_out_of_stock_getstockinfo($item['nid'], $data['attributes']);
+      $qty = $item['qty'];
+      if ($stockinfo) {
+        if ($stockinfo['stock'] - $qty < 0) {
+          $error = _uc_out_of_stock_get_error('not_enough', $item['nid'], $data['attributes'], $stockinfo['stock'], $qty);
+          $flag = 'yes';
+          form_set_error("items][$k][qty", $error);
+        }
+      }
+    }
+  }
+  return $flag;
+}

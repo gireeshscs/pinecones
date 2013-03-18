@@ -1,0 +1,5 @@
+name = Reristration on front page
+description = Show only one email field in block for simple registration
+package = Other
+core = 7.x
+dependencies[] = email_registration

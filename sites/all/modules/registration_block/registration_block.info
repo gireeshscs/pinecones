@@ -1,0 +1,9 @@
+name = Registration block
+description = Simple e-mail registration.
+package = Email
+version = 7.x-1.1
+core = 7.x
+;files[] = includes/registration_block.form.inc
+stylesheets[all][] = css/registration_block.css
+dependencies[] = email_registration
+

@@ -1,0 +1,451 @@
+/* 
+    Document   : static.css
+    Created on : 13.03.2013, 10:23:11
+    Author     : sz
+    Description: Styles for static pages
+        
+*/
+body.page-node-38 #content_full, body.page-node-39 #content_full, body.page-node-40 #content_full {
+    width: 860px;
+    margin: 0 auto;
+}
+body.page-node-38 #content_full h1, body.page-node-39 #content_full h1, body.page-node-40 #content_full h1 {
+    display: block;
+}
+body.page-node-38 .group_row_bottom {
+    padding: 40px 0 0;
+}
+#spin_right, .field-name-field-row-top-right .field-item {
+    height: 371px;
+    margin: -21px 0 0;
+    padding-bottom: 50px;
+    position: relative;
+    width: 362px;
+}
+.field-name-field-row-top-right .field-item {
+    width: 325px;
+}
+#spin_cell h2,#care_refr h2, #sizing_wrp h2, #spin_right h2, body.page-node-39 h2, body.page-node-40 h2 {
+    padding-bottom: 8px;
+    margin-top: 10px;
+    color: #A6BB4F;
+    font: 22px/28px 'PT Sans',sans-serif;
+    min-height: 28px;
+    width: 315px;
+    text-transform: capitalize;
+}
+
+#care_refr {
+    float: right;
+    margin: -10px 0 0;
+    width: 432px;
+}
+#care_refr h2 {
+    padding-bottom: 6px;
+    width: 432px !important;
+}
+body.page-node-38 #content_full p, body.page-node-39 #content_full p {
+    color: #6E6E6E;
+    font: 13px/20px 'PT Sans',sans-serif;
+    text-align: justify;
+}
+body.page-node-38 .group_row_top_right, body.page-node-39 .group_row_top_left, body.page-node-39 .group_row_middle_right {
+    float: right;
+}
+body.page-node-38 .group_row_top_left, body.page-node-38 group_row_bottom_left, body.page-node-38 .group_row_bottom_left img {
+    float: left;
+}
+body.page-node-39 .group_row_middle_left {
+    width: 326px;
+    float: left;
+    margin-right: 50px;
+}
+body.page-node-39 .group_row_top_right, body.page-node-39 .group_row_bottom_left {
+    float: left;
+}
+.group_row_middle .field {
+    display: inline-block;
+}
+.field-name-field-row-top-left .field-item {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C2C2C2;
+    border-radius: 10px 10px 10px 10px;
+    height: 380px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 420px;
+    z-index: 110;
+    box-shadow: 0 20px 20px #CECECE;    
+}
+
+body.page-node-39 .field-name-field-row-top-left .field-item {
+    width: 485px;
+    height: 390px;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+body.page-node-39 .group_row_bottom_right {
+    padding: 60px 0 0;
+    width: 482px !important;
+    float: right;
+    margin-left: 60px;
+}
+body.page-node-39 .group_row_bottom {
+    display: inline-block;
+    margin-bottom: 70px;
+    margin-top: 40px;
+}
+.group_row_middle {
+    display: inline-block;
+    padding-top: 40px;
+}
+#add_btn_pin {
+    background: url("../styles/images/add_to_cart_btn.png") no-repeat scroll 0 0 transparent;
+    color: #5E6B1A;
+    display: block;
+    font: 18px/93px 'PT Sans',sans-serif;
+    height: 90px;
+    padding: 0 0 96px 64px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    text-transform: uppercase;
+    width: 235px;
+}
+#care_refr #add_btn_pin {
+    margin-left: 20px !important;
+}
+#add_btn_pin:hover {
+    background-position: 0 100%;
+    text-decoration: none;
+}
+body.page-node-40 .field-group-format {
+    display: inline-block;
+}
+.field-name-field-text-1, .field-name-field-image-2, .field-name-field-image-4, .field-name-field-image-4,
+.field-name-field-text-6, .field-name-field-image-7, .field-name-field-text-8-left, .field-name-field-text-9, .field-name-field-image-10 {
+   float: left; 
+}
+.field-name-field-image-1, .field-name-field-image-6, .field-name-field-image-9 {
+    width: 418px;
+    float: right;
+    margin: 0 0 20px 40px;    
+}
+.field-name-field-image-10 {
+    width: 548px;
+    float: left;
+}
+.field-name-field-image-9 img {
+    text-align: inherit;
+}
+.field-name-field-image-9 {
+    width: 260px;
+}
+.field-name-field-text-9 {
+    width: 535px;
+}
+.field-name-field-text-1, .field-name-field-text-6 {
+    width: 400px;
+}
+.field-name-field-image-2, .field-name-field-image-4, .field-name-field-image-7, .field-name-field-image-10 {
+    margin: 20px 38px 0 0;    
+}
+.field-name-field-text-2, .field-name-field-text-4, .field-name-field-text-10 {
+    float: right;
+    width: 300px;
+}
+.field-name-field-text-10 {
+    width: 270px;
+}
+.field-name-field-text-7 {
+    width: 500px;
+    padding-top: 50px;
+    float: right;
+}
+field-name-field-text-5-wide {
+    margin-top: 20px;
+}
+.field-name-field-text-8-left {
+    border-right: 2px solid #E5E5E5;
+    padding: 0 34px 0 0;
+    clear: none !important;
+    float: left !important;
+    position: relative;
+    text-align: left !important;
+    width: 394px;    
+}
+.field-name-field-text-8-right {
+    border-left: 2px solid #E5E5E5;
+    left: -2px;
+    padding: 0 0 0 34px;
+    clear: none !important;
+    float: left !important;
+    position: relative;
+    text-align: left !important;
+    width: 394px;
+    float: right;
+}
+.group_row_8, .group_row_9, .group_row_5 {
+    margin-top: 30px;
+}
+
+/* =================== START Pinecone Info Page (pi) ========== */
+#pi {
+	width:860px;
+	margin:0 auto;
+	padding-bottom: 24px;
+}
+#pi h1 {
+	padding-bottom: 14px;
+}
+.pi_cell {
+	width: 860px;
+}
+#spin_right {
+/*	width: 362px;
+	height: 371px;*/
+/*	margin: -21px 0 0;
+	position: relative;
+	padding-bottom: 50px;*/
+}
+#spin_cell {
+	height:500px;
+	padding: 0 0 35px 0;
+}
+#spin_cell h2 {
+	padding-bottom: 8px;
+}
+#spin_wrp {
+	float: left;
+	position: relative;
+}
+#spin_box {
+/*	border: 1px solid #c2c2c2;
+ 	width: 420px;
+	height: 361px;
+	padding: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: #fff;
+	position: relative;
+	z-index: 110;
+	overflow: hidden;
+	float:left;*/
+}
+#spin_area {
+	float:right;
+	margin:0 -25px 10px 20px;
+	}
+
+#spin_shadow {
+	display: block;
+	width: 454px;
+	height: 123px;
+	position: absolute;
+	left: 0;
+	bottom: -39px;
+	z-index: 1;
+	display:none; /*TURNS OFF SHADOW*/
+}
+#spin_btn {
+	display: block;
+	text-transform: uppercase;
+	color: #5e6b1a;
+	width: 260px;
+	height: 59px;
+	position: absolute;
+	left: 10px;
+	bottom: -13px;
+	text-align: right;
+	padding: 0 18px;
+	font: 15px/45px 'PT Sans', sans-serif;
+	background: url(/sites/default/files/spin_btn_bg.png) no-repeat 0 0;
+	text-shadow: 1px 0 0 #fff;
+}
+
+#spin_btn:hover {
+	left: 0;
+}
+#sizing_wrp {
+	padding: 6px 0 0;
+}
+#sizing_wrp h2 {
+	padding-bottom: 8px;
+}
+#sizing_img {
+	display: block;
+	width: 860px;
+	height: 276px;
+	margin: 14px 0 0;
+}
+#pi_btm_cell {
+	margin: 50px 0 0;
+	width: 860px;
+}
+#pi_btm_cell h2 {
+	width: 432px !important;
+	padding-bottom: 6px;
+}
+#pi_btm_cell p a {
+	text-decoration: underline;
+	color: #6e6e6e;
+}
+#care_refr {
+	float: right;
+	width: 432px;
+	margin: -10px 0 0;
+}
+#care_refr #add_btn{
+	margin-left:-5px !important;
+	background: url("../styles/images/add_to_cart_btn.png") no-repeat scroll 0 0 transparent;
+    color: #5E6B1A;
+    display: block;
+    font: 18px/93px 'PT Sans',sans-serif;
+    height: 90px;
+    padding: 0 0 96px 64px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    text-transform: uppercase;
+    width: 235px;
+	text-decoration:none;
+}
+#care_refr #add_btn:hover {
+	background: url("../styles/images/add_to_cart_btn.png") no-repeat scroll 0 -96px transparent;
+}
+#purchase {
+	text-transform: uppercase;
+	font-size: 15px;
+}
+
+
+/* =================== END Pinecone Info Page (pi) ========== */
+/* =================== START Shipping Returns Page (shr) ========== */
+#shipping_options p {
+	padding: 7px 0 0;
+}
+#upsp {
+	display: block;
+	float: right;
+	margin: 7px 2px 32px 46px;
+}
+.shr_table {
+	width: 856px;
+	height: 107px;
+	border: 2px solid #c2c2c2;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin: 29px 0 1px 0;
+	background: url(./images/table_bg.png) repeat-x 0 0;
+}
+.row,
+.row div {
+	height: 34px;
+	color: #494949;
+	font: 15px/34px 'PT Sans', sans-serif;
+}
+.row div {
+	float: left;
+	width: 129px;
+	border-right: 2px solid #c2c2c2;
+	padding: 0 0 0 12px;
+}
+.col6 {
+	border-right: none !important;
+}
+#row2,
+#row2 div {
+	height: 35px;
+}
+#row2 {
+	border-top: 2px solid #c2c2c2;
+	border-bottom: 2px solid #c2c2c2;
+}
+#row1 div,
+.col1 {
+	text-transform: uppercase;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+}
+.row .col1 {
+	padding: 0 0 0 10px !important;
+	width: 131px !important;
+}
+#row1 .col1 {
+	font-style: italic;
+}
+#domestic_table #row1 .col1 {
+	color: #4f878f;
+}
+.no,
+#international_table #row1 .col1 {
+	color: #e10f0f !important;
+}
+#return_policy {
+	padding: 24px 0 17px 0;
+}
+#return_image {
+	display: block;
+	float: right;
+	margin: -22px 0 22px 49px;
+}
+#return_policy p {
+	padding: 8px 0 0;
+}
+.shr_table .row {}
+/* =================== END Shipping Returns Page (shr) ========== */
+/* =================== START ECO Responsibility Page (eco) ========== */
+
+#eco {
+	width:860px;
+	margin:0 auto
+	}
+.eco_cell {
+	width: 860px;
+	padding: 7px 0 0;
+}
+.eco_cell .left p {margin-top:0}
+#eco_cell1 div {
+	width: 325px;
+}
+.eco_cell h2 {
+	margin-top: 0;
+	margin-bottom: 9px;
+}
+@-moz-document url-prefix() {
+ .eco_cell h2 {
+ margin-top: -5px;
+}
+}
+#eco_cell2 {
+	margin: 38px 0 0;
+}
+#eco_video {
+	float: right;
+	width: 482px !important;
+	height: 308px;
+}
+#eco_cell2 div {
+	width: 326px;
+}
+#eco_cell3 {
+	margin: 3px 0 0;
+}
+#eco_cell3 img {
+	margin-top:30px;
+}
+#eco_cell3 div {
+	/*padding: 60px 0 0;*/
+	margin-bottom:30px;
+	width: 482px !important;
+}
+#eco_cell3 div h2 {
+	width: 482px;
+}
+#eco_cell3 div p a {
+	color: #6E6E6E;
+	text-decoration: underline;
+}
+/* =================== END ECO Responsibility Page (eco) ========== */
+.static-topmargin {margin-top:-10px}
+

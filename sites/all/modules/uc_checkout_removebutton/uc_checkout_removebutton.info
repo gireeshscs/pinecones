@@ -1,0 +1,6 @@
+name = Checkout Remove Button
+description = Make the UC checkout page show a remove button for each item in the cart
+dependencies[] = uc_cart
+package = Custom
+version = 7.x-1.1
+core = 7.x

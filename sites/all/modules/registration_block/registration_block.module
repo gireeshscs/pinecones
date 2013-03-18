@@ -1,0 +1,81 @@
+<?php
+/**
+ * Implementation hook_block_info()
+ * Default settings
+ */
+function registration_block_block_info() {
+  $blocks['user_login'] = array('info' => t('Registration'));
+  return $blocks;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function registration_block_form_user_register_form_alter(&$form, &$form_state, $form_id){
+    $form['account']['name']['#type'] = 'value';
+    $form['account']['name']['#value'] = 'registration_block_' . user_password();
+    $form['account']['mail']['#title'] = t('E-mail');
+    $form['account']['mail']['#description'] = t('');
+    $form['account']['mail']['#title'] = t('');
+    $form['name']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Name';}";
+    //var_dump($form);
+    //die('1');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function registration_block_form_user_login_alter(&$form, &$form_state) {
+  $form['name']['#title'] = t('E-mail');
+  $form['name']['#description'] = t('Enter your e-mail address.');
+  $form['name']['#element_validate'][] = 'registration_block_user_login_validate';
+  $form['pass']['#description'] = t('Enter the password that accompanies your e-mail.');
+}
+
+/*
+ * Implementation hoock_block_view()
+ */
+function registration_block_block_view($delta = '') {
+    global $user; 
+    $block = array();
+  
+  if ($delta == 'user_login' && $user->uid == 0){
+        $block['subject'] = t('');// or t('Some block title'); for example
+        $block['content'] = array(
+            drupal_get_form('user_register_form'),
+            );
+  } elseif ($delta == 'user_login' && $user->uid != 0){
+    //   
+   }
+  return $block;
+}
+
+/**
+ * Form element validation handler for the user login form.
+ * Allows users to authenticate by email, which is our preferred method.
+ */
+
+function registration_block_user_login_validate($form, &$form_state) {
+  if (isset($form_state['values']['name'])) {
+    // Keep the email value in form state for furher validation.
+    $form_state['values']['email'] = $form_state['values']['name'];
+    if ($name = db_query('SELECT name FROM {users} WHERE LOWER(mail) = LOWER(:name)', array(':name' => $form_state['values']['name']))->fetchField()) {
+      $form_state['values']['name'] = $name;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function registration_block_form_user_profile_form_alter($form, &$form_state) {
+  $form['account']['name']['#title'] = t('Display name');
+}
+function registration_block() {
+    
+  $users = db_select('users', 'u')->fields('u')->execute(); // или $nodes = db_query("SELECT * FROM {node}");
+    foreach ($users as $user) {
+    $items[] = $user->mail;
+    //var_dump($items); die();
+  }
+}

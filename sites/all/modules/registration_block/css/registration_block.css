@@ -1,0 +1,11 @@
+/* 
+    Document   : registration_block
+    Created on : 21.01.2013, 10:02:27
+    Author     : ibit
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#user-register-form label, #user-register-form input#edit-submit {
+    display: none;
+}

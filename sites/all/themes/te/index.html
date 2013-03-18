@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:600' rel='stylesheet' type='text/css'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        startRotator('#hero_image ul');
+      });
+      function rotateBanners(elem) {
+        var active = $(elem + ' li.active');
+        var next = active.next();
+        if(next.length == 0) next = $(elem + ' li:first');
+        active.removeClass('active').fadeOut(1000);
+        next.addClass('active').fadeIn(3000);
+      }
+      function prepareRotator(elem) {
+        $(elem + ' li').fadeOut(0);
+        $(elem + ' li:first').fadeIn(0).addClass('active');
+      }
+      function startRotator(elem) {
+        prepareRotator(elem);
+        setInterval("rotateBanners('" + elem + "')", 10000);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header_row">
+        <div id="header">
+          <div id="logo">
+            <h1><a name="top" href="#"><span>Third Eye Pinecones</span></a></h1>
+          </div><!-- /#logo -->
+          <div id="main_menu">
+            <ul>
+              <li><a href="#">Catalog</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Pinecone Info</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div><!-- /#main_menu -->
+          <div id="sub_menu">
+            <ul>
+              <li><a href="#">Founder's Story</a></li>
+              <li><a href="#">History &amp; Symbolism</a></li>
+              <li><a href="#">Eco-Responsibility</a></li>
+              <li><a href="#">Media</a></li>
+            </ul>
+          </div><!-- /#sub_menu -->
+          <div id="cart_link">
+            <a href="#">My Cart</a>
+          </div><!-- /#cart_link -->
+          <div id="social_links">
+            <ul>
+              <li><a id="social_links_facebook" href="#"><span>Facebook</span></a></li>
+              <li><a id="social_links_twitter" href="#"><span>Twitter</span></a></li>
+            </ul>
+          </div><!-- /#social_links -->
+          <div id="email_signup">
+            <form action="#" method="post">
+              <input type="text" name="email" value="Email Signup"/>
+            </form>
+          </div><!-- /#email_signup -->
+          <div id="search">
+            <form action="#" method="post">
+              <input type="text" name="search" value="Search"/>
+            </form>
+          </div><!-- /#search -->
+        </div><!-- /#header -->
+      </div><!-- /#header_row -->
+      <div id="hero">
+        <div id="hero_image">
+          <ul>
+            <li><a href="#"><img src="hero1.jpg"/></a></li>
+            <li><a href="#"><img src="hero2.jpg"/></a></li>
+            <li><a href="#"><img src="hero3.jpg"/></a></li>
+            <li><a href="#"><img src="hero4.jpg"/></a></li>
+            <li><a href="#"><img src="hero5.jpg"/></a></li>
+          </ul>
+        </div><!-- /#hero_image -->
+        <div id="hero_blocks">
+          <div class="block">
+            <div id="hero_pendants">
+              <a href="#"><span>Pendants</span></a>
+            </div>
+          </div>
+          <div class="block">
+            <div id="hero_story">
+              <a href="#"><span>Our Story</span></a>
+            </div>
+          </div>
+          <div class="block">
+            <div id="hero_accessories">
+              <a href="#"><span>Accessories</span></a>
+            </div>
+          </div>
+        </div><!-- /#hero_blocks -->
+      </div><!-- /#hero -->
+      <div id="content_row" class="floatcontainer">
+        <div id="sidebar">
+        </div><!-- /#sidebar -->
+        <div id="content">
+        </div><!-- /#content -->
+      </div><!-- /#content_row -->
+      <div id="back_to_top">
+        <a href="#top"><span>Back to Top</span></a>
+      </div><!-- /#back_to_top -->
+      <div id="footer_row">
+        <div id="footer">
+          <div id="footer_links">
+            <ul>
+              <li><a href="#">Wholesale</a></li>
+              <li><a href="#">Shipping &amp; Returns</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div><!-- /#footer_links -->
+          <div id="copyright">
+            Copyright &copy; Third Eye Pinecones 2012. All Rights Reserved.
+          </div><!-- /#copyright -->
+        </div><!-- /#footer -->
+      </div><!-- /#footer_row -->
+    </div><!-- /#wrapper -->
+  </body>
+</html>

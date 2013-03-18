@@ -1,0 +1,108 @@
+<?php
+
+/**
+ * @file
+ * Leveraging Ctools plugin in Ubercart.
+ */
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function uc_ctools_ctools_plugin_type() {
+  return array(
+    'line_item' => array(
+      'use hooks' => FALSE,
+    ),
+    'order_pane' => array(
+      'use hooks' => FALSE,
+    ),
+    'cart_pane' => array(
+      'use hooks' => FALSE,
+    ),
+    'checkout_pane' => array(
+      'use hooks' => FALSE,
+    ),
+    'payment_gateway' => array(
+      'use hooks' => FALSE,
+    ),
+    'payment_method' => array(
+      'use hooks' => FALSE,
+    ),
+    'shipping_method' => array(
+      'use hooks' => FALSE,
+    ),
+  );
+}
+
+/**
+ * Implementation of hook_hook_info().
+ */
+function uc_ctools_hook_info() {
+  //Hooks provided by uc_cart
+  foreach (array('add_to_cart', 'add_to_cart_data', 'cart_display', 'cart_pane', 'cart_pane_alter', 'checkout_complete', 'checkout_pane', 'checkout_pane_alter', 'update_cart_item') as $hook) {
+    $hooks['uc_' . $hook] = array(
+      'group' => 'ubercart',
+    );
+  }
+
+  //Hooks provided by uc_file
+  foreach (array('download_authorize', 'file_action', 'file_transfer_alter') as $hook) {
+    $hooks['uc_' . $hook] = array(
+      'group' => 'ubercart',
+    );
+  }
+
+  //Hooks provided by uc_order
+  foreach (array('invoice_templates', 'line_item', 'line_item_alter', 'line_item_data_alter', 'order', 'order_actions', 'order_pane', 'order_pane_alter', 'order_product_alter', 'order_product_delete', 'order_product_can_ship', 'order_state') as $hook) {
+    $hooks['uc_' . $hook] = array(
+      'group' => 'ubercart',
+    );
+  }
+
+  //Hooks provided by uc_product
+  foreach (array('alter', 'class', 'default_classes', 'description', 'description_alter', 'models', 'types') as $hook) {
+    $hooks['uc_product_' . $hook] = array(
+      'group' => 'ubercart',
+    );
+  }
+
+  //Hooks provided by uc_stock
+  $hooks['uc_stock_adjusted'] = array(
+    'group' => 'ubercart',
+  );
+
+  //Hooks provided by uc_store
+  $hooks['tapir_table_alter'] = array(
+    'group' => 'ubercart',
+  );
+  foreach (array('form_alter', 'message', 'store_status') as $hook) {
+    $hooks['uc_' . $hook] = array(
+      'group' => 'ubercart',
+    );
+  }
+
+  //Hooks provided by uc_taxes
+  $hooks['uc_calculate_tax'] = array(
+    'group' => 'ubercart',
+  );
+
+   //Hooks provided by uc_payment
+  foreach (array('payment_entered', 'payment_gateway', 'payment_gateway_alter', 'payment_method', 'payment_method_alter') as $hook) {
+    $hooks['uc_' . $hook] = array(
+      'group' => 'ubercart',
+    );
+  }
+
+  //Hooks provided by uc_quote
+  foreach (array('shipping_method', 'shipping_type') as $hook) {
+    $hooks['uc_' . $hook] = array(
+      'group' => 'ubercart',
+    );
+  }
+
+  //Hooks provided by uc_shipping
+  $hooks['uc_shipment'] = array(
+    'group' => 'ubercart',
+  );
+  return $hooks;
+}

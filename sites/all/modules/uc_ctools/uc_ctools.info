@@ -1,0 +1,12 @@
+name = Ubercart Ctools
+description = "Leveraging Ctools plugin in Ubercart."
+package = Ubercart - extra
+core = 7.x
+dependencies[] = ctools
+
+; Information added by drupal.org packaging script on 2012-08-27
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "uc_ctools"
+datestamp = "1346039854"
+

@@ -1,0 +1,154 @@
+<?php
+/**
+ * @file
+ * This module allow change attribute in a new page
+ */
+
+/**
+ * Implements hook_menu();
+ */
+function attribute_menu() {
+    $items[] = array();
+
+    $items['attribute/%'] = array(
+        'title' => 'Atributes page',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('attribute_options_form'),
+        'description' => 'Way to change attributes',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK
+    );
+    $items['attribute/confirm'] = array(
+        'title' => 'Confirnation page',
+        'page callback' => 'attribute',
+        'description' => 'Confirmation page',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK
+    );
+    return $items;
+}
+
+function attribute_options_form() {
+    return drupal_get_form('attribute_form');
+}
+
+function attribute_form($form, &$form_state) {
+    $form = array();
+
+    $item_id = arg(1);
+    $items = uc_cart_get_contents();
+    foreach ($items as $item) {
+
+        $form['attributes'] = _uc_attribute_alter_form($item_id, $item, $use_ajax = FALSE);
+        if (is_array($form['attributes'])) {
+            $form['attributes']['#tree'] = TRUE;
+            $form['attributes']['#weight'] = -1;
+        }
+    }
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Submit'),
+    );
+    return $form;
+}
+
+function attibute_form_validate($form, &$form_state) {
+    // Validation logic.
+}
+
+function attribute_form_submit($form, &$form_state) {
+    $item_id = arg(1);
+    $items = uc_cart_get_contents();
+    $order = uc_order_load($_SESSION['cart_order']);
+
+    foreach ($order->products as $products) {
+        $order_pid = $products->order_product_id;
+    }
+
+    foreach ($items as $item) {
+        if ($item->cart_item_id == $item_id) {
+            foreach ($item->attributes as $attrib) {
+                foreach ($attrib->options as $list_options) {
+                    //Nothing here
+                }
+            }
+            $aid = $attrib->aid;
+            foreach ($form_state['input']['attributes'] as $option_id) {
+                $oid = $option_id;
+            }
+
+            $label = db_select('uc_attributes', 'uc')
+                    ->fields('uc', array('label'))
+                    ->condition('aid', $aid)
+                    ->execute()
+                    ->fetchField();
+
+            $oid_name = db_select('uc_attribute_options', 'ucop')
+                    ->fields('ucop', array('name'))
+                    ->condition('oid', $oid)
+                    ->execute()
+                    ->fetchField();
+            $attr = array(
+                'attributes' => array(
+                    $aid => $oid,
+                ),
+                'shippable' => 0,
+                'type' => 'type',
+                'module' => 'uc_product'
+            );
+
+            $order_attr = array(
+                'attributes' => array(
+                    $label => array(
+                        $oid => $oid_name,
+                    )
+                ),
+                'shippable' => 0,
+                'type' => 'type',
+                'module' => 'uc_product'
+            );
+
+            db_update('uc_cart_products')
+                    ->fields(array(
+                        'qty' => $item->qty,
+                        'changed' => REQUEST_TIME,
+                        'data' => serialize($attr),
+                    ))
+                    ->condition('cart_item_id', $item->cart_item_id)
+                    ->execute();
+
+            db_update('uc_order_products')
+                    ->fields(array(
+                        'qty' => $item->qty,
+                        'data' => serialize($order_attr),
+                    ))
+                    ->condition('order_product_id ', $order_pid)
+                    ->execute();
+
+            uc_cart_get_contents(NULL, 'rebuild');
+            if (!strpos(request_uri(), 'cart', -4)) {
+                drupal_set_message(t('Your item(s) have been updated.'));
+            }
+        }
+    }
+
+    $data = db_select('uc_cart_products', 'uc')
+            ->fields('uc', array(
+                'data'
+            ))
+            ->condition('cart_item_id', $item->cart_item_id)
+            ->execute()
+            ->fetchField();
+
+    $data = db_select('uc_order_products', 'uc')
+            ->fields('uc', array(
+                'data'
+            ))
+            ->condition('order_id', $order->order_id)
+            ->execute()
+            ->fetchField();
+
+    drupal_goto('cart/checkout');
+}

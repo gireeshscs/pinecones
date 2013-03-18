@@ -1,0 +1,411 @@
+<?php
+
+/**
+ * @file
+ * Many form alters and reorders things on Ubercart. Onlu for Nickarnderson Art
+ */
+
+/**
+ * Iplementation hook_views_pre_view()
+ * @param type $view
+ */
+function custom_views_pre_view(&$view) {
+    if ($view->name == 'products') {
+        // Nothig here... 
+    }
+}
+
+/**
+ * implimentation of hook_hook_info_alter()
+ * @param array $hooks
+ */
+function custom_hook_info_alter(&$hooks) {
+    $hooks['form_alter']['group'] = 'form';
+}
+
+function custom_view_other_products() {
+    $output = "";
+    $output .= '<div class="other_products">OTHER PRODUCTS</div>';
+
+    return $output;
+}
+
+/**
+ * Implement hook_form()
+ * The checkout form built up from the enabled checkout panes.
+ *
+ * @param $order
+ *   The order that is being checked out.
+ *
+ * @see uc_cart_checkout_form_process()
+ * @see uc_cart_checkout_form_validate()
+ * @see uc_cart_checkout_form_submit()
+ * @see uc_cart_checkout_review()
+ * @see theme_uc_cart_checkout_form()
+ * @ingroup forms
+ */
+function custom_uc_cart_review_table($variables) {
+
+    $span_remove = '<span class="remove_tooltip"></span>';
+    $span_attr = '<span class="attr_tooltip"></span>';
+    $data = uc_cart_get_contents();
+    $items = $variables['items'];
+    $show_subtotal = $variables['show_subtotal'];
+    $continue_shopping = $form['actions']['continue_shopping'] = array(
+        '#markup' => '<span class="cont_shop">' . l(t('Continue shopping'), uc_cart_continue_shopping_url()) . '</span>',
+    );
+
+    $we_accept = '<p id="we_accept">' . t('We Acccept:');
+    $we_accept .= '<img src=" ' . $GLOBALS['base_root'] . '/sites/default/files/cc_img.png"/></p>';
+
+    $coupons = module_invoke('uc_coupon', 'block_view', 'coupon-discount');
+    $coupon = 'Enter your Coupon Code';
+    $coupon .= '<div class="coup_txt">' . render($coupons['content']) . '</div>';
+
+    $paypall = 'Have a Paypal Account?';
+    $paypall_form = drupal_get_form('uc_paypal_ec_form');
+    $paypall .= '<div>' . drupal_render($paypall_form) . '</div>';
+
+    $next_button = '<span class="cart_continue_text">you’ve made the right choice.</span>';
+    $next_button .= '<span id="cart_next">Checkout</span>';
+
+    $subtotal = 0;
+
+    // Set up table rows.
+    $display_items = entity_view('uc_order_product', $items, 'cart');
+    if (!empty($display_items['uc_order_product'])) {
+        foreach ($data as $key) {
+            // Find Attribute name by id
+            foreach ($key->attributes as $attrib) {
+                foreach ($attrib->options as $list_options) {
+                    //print $list_options->name . '<br/>';
+                }
+            }
+            $aid = $attrib->aid;
+            
+            if ($key->data['attributes']) {
+                foreach ($key->data['attributes'] as $oid => $id) {
+                    foreach ($id as $name_id) {
+                        //Nothing here. Just initiate $name_id
+                    }
+                }
+            }
+            $attribute_name = db_select('uc_attribute_options', 'op')
+                    ->fields('op', array('name'))
+                    ->condition('oid', $oid)
+                    ->execute()
+                    ->fetchField();
+
+            //end;
+
+            $rm = $key->cart_item_id;
+            $images = field_get_items('node', $key, 'uc_product_image');
+            //$qty = $key->qty;
+            $image = $images[0];
+            $imagedef = array(
+                'style_name' => 'thumbnail',
+                'path' => $image['uri'],
+            );
+
+            $product_image_theme = theme('image_style', $imagedef);
+
+            $product_image = '<div class="prod_img"/><a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' ">' . $product_image_theme . '</a></div>';
+            $sku = $key->model;
+
+            $total = $key->price;
+            $subtotal += $total * ($key->qty);
+
+            $description = '<div class="prod_info">';
+            if ($name_id) {
+                $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>
+                 <a class="attribute_name colorbox-inline" href="' . $GLOBALS['base_root'] . '/attribute/' . $key->cart_item_id . '?width=260&height=220">' . $span_attr . ' (' . $name_id . ')</a>';
+            } elseif ($key->data['attributes'] == TRUE) { //if true - show attibute name
+                $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>
+                        <a class="attribute_name colorbox-inline" href="' . $GLOBALS['base_root'] . '/attribute/' . $key->cart_item_id . '?width=260&height=220">' . $span_attr . ' (' . $attribute_name . ')</a>';
+            } else {
+                $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>';
+            }
+            $description .= '<small>';
+            $description .= '<div class="sku"> Item #' . $sku . ' -  </div>';
+
+            $description .= '</small>';
+            $description .= '<a href=" ' . $GLOBALS['base_root'] . '/shippingreturns "><small>Shipping & Returns</small></a>' . '</div>';
+
+            $suffix = !empty($display_item['#suffixes']) ? implode(' ', $display_item['#suffixes']) : '';
+            $rows[] = array(
+                array('data' => $product_image, 'class' => array('product_image')),
+                array('data' => $description, 'class' => array('products')),
+                //array('data' => $qty, 'class' => array('qty')),  
+                array('data' => array('#theme' => 'uc_price', '#price' => $total, '#suffix' => $suffix), 'class' => array('price')),
+                array('data' => l($span_remove . '<img src="' . url(drupal_get_path('module', 'uc_checkout_removebutton') . '/remove_ico.png') . '" alt="' . t('Remove item') . '" />', 'cart/remove/' . $rm, array('html' => TRUE)), 'class' => array('remove')), // Added field  
+            );
+        }
+    }
+
+    //add delimeter
+    $rows[] = array(
+        'data' => array(
+            'data' => array(
+            //Nothig here (just emtry line)
+            ),
+        ),
+        'class' => array('delimeter'),
+    );
+
+    //Add continue shopping button
+    if ($continue_shopping) {
+        $rows[] = array(
+            'data' => $continue_shopping,
+            'class' => array('cont_shop')
+        );
+    }
+
+    // Add the subtotal as the final row.
+    if ($show_subtotal) {
+        $rows[] = array(
+            'data' => array(
+                // One cell
+                array(
+                    'data' => array(
+                        '#theme' => 'uc_price',
+                        '#prefix' => '<span id="subtotal-title">' . t('Subtotal') . '</span> ',
+                        '#price' => $subtotal,
+                    ),
+                ),
+            ),
+            // Row attributes 
+            'class' => array('subtotal'),
+        );
+    }
+
+    //Add simlle block "We accept"
+    $rows[] = array(
+        'data' => array(
+            '#markup' => $we_accept,
+        ),
+        'class' => array('we_acc'),
+    );
+
+    // Add coupons
+    $rows[] = array(
+        'data' => array(
+            '#markup' => $coupon,
+        ),
+        'class' => array('coupon_code'),
+    );
+    $rows[] = array(
+        'data' => array(
+            '#markup' => $next_button,
+        ),
+    );
+
+    return theme('table', array('rows' => $rows, 'attributes' => array('class' => array('cart-review'))));
+}
+
+/**
+ * Implement hook_theme_registry_alter()
+ * @param array $themes
+ */
+function custom_theme_registry_alter(&$themes) {
+    $themes['uc_cart_review_table']['function'] = 'custom_uc_cart_review_table';
+    $themes['uc_payment_totals']['function'] = 'custom_uc_payment_totals';
+}
+
+/**
+ * 
+ * @param type $variables
+ * @return string
+ */
+function custom_uc_payment_totals($variables) {
+    $order = $variables['order'];
+
+    $line_items = uc_order_load_line_items_display($order);
+    $output = '<table id="uc-order-total-preview">';
+
+    foreach ($line_items as $line) {
+        // krumo($line);
+        if (!empty($line['title'])) {
+            if ($line['type'] == 'subtotal' || $line['type'] == 'total') {
+                $output .= '<tr><td class="title">' . filter_xss($line['title']) . ':</td>'
+                        . '<td class="price">' . theme('uc_price', array('price' => $line['amount'])) . '</td></tr>';
+            } elseif ($line['type'] == 'shipping') {
+                $output .= '<tr><td class="title">Shipping (' . trim(filter_xss($line['title'])) . '):</td>'
+                        . '<td class="price">' . theme('uc_price', array('price' => $line['amount'])) . '</td></tr>';
+            }
+        }
+    }
+
+    $output .= '</table>';
+    return $output;
+}
+
+/**
+ * @return  A themed HTML string containing a link to the recently read item.
+ * 
+ * In this function I generate random image for block "You may also like"
+ * If node object - "Jewelry" I render "Apparel & Accessories" and conversely
+ */
+function custom_also() {
+    $node = node_load(arg(1));
+    
+    if ($node->type == 'product') {
+        
+        $node_real = field_view_field('node', $node, 'field_product_category');
+        
+        foreach ($node_real as $fields) {
+            if(isset($fields->field_product_category)) {
+                foreach ($fields->field_product_category as $field) {
+                    foreach ($field as $value) {
+                         $product_kategory_key = $value['value'];
+                    }
+                }
+            }
+        }
+        
+        $another_product_id = db_select('field_data_field_product_category', 'f')
+                ->fields('f', array('entity_id'))
+                ->condition('f.field_product_category_value', $product_kategory_key, '!=')
+                ->range(0, 1)
+                ->orderRandom()
+                ->execute()
+                ->fetchField();
+
+        if ($another_product_id == FALSE) {
+            
+            $another_product_id = db_select('field_data_field_product_category', 'f')
+                ->fields('f', array('entity_id'))
+                //->condition('f.field_product_category_value', $product_kategory_key, '!=')
+                ->range(0, 1)
+                ->orderRandom()
+                ->execute()
+                ->fetchField();
+        }
+            $item = $another_product_id;
+            $node_random = node_load($item);
+
+            $image_a = field_view_field('node', $node_random, 'uc_product_image', array('label' => 'hidden'));
+            $image = drupal_render($image_a);
+        
+            $title = "";
+            $title .= '<b>' . l($node_random->title, $GLOBALS['base_root'] . '/node/' . $node_random->nid) . '</b>';
+            print '<a href="' . $GLOBALS['base_root'] . '/node/' . $node_random->nid . '">' . $image . '</a>';
+            print $title;
+        
+    }
+    return;
+}
+
+function custom_similar_pieces() {
+    $node = node_load(arg(1));
+    $i = 0;
+    if(isset($node->field_style)) {
+        foreach ($node->field_style as $style) {
+            $link = $GLOBALS['base_root'] . '/products?field_style_tid[]=' . $style[$i]['tid'];
+        }
+    }
+    print $link;
+
+    return;
+}
+
+/**
+ * We can show images in recently view block
+ * @param type $variables
+ * @return type
+ */
+function nickandersonart_recently_read_item($variables) {
+    $item = $variables['item'];
+    $node = node_load($item['nid']);
+    if ($node->type == 'product') {
+        $image = render(field_view_field('node', $node, 'uc_product_image', array('label' => 'hidden')));
+    }
+    $output = '<a href="' . $GLOBALS['base_root'] . '/node/' . $item['nid'] . '">' . $image . '</a>';
+    $output .= l($item['title'], 'node/' . $item['nid']);
+    return $output;
+}
+
+/**
+ * Implementation hook_block_info()
+ * @return type
+ */
+function custom_block_info() {
+    $blocks['styles-list'] = array('info' => t('Styles list'));
+    $blocks['titles'] = array('info' => t('Fieldset titles'));
+    return $blocks;
+}
+
+/**
+ * Iplementation hook_block_view()
+ * @param type $delta
+ * @return type
+ */
+function custom_block_view($delta = '') {
+    $block = array();
+
+    if ($delta == 'styles-list') {
+        $block['subject'] = t('Styles list');
+        $block['content'] = '';
+    }
+    if ($delta == 'titles') {
+        $block['subject'] = t('Fieldset titles');
+        $block['content'] = '';
+    }
+    return $block;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * @param type $form
+ * @param type $form_state
+ * @param type $order
+ */
+function custom_form_uc_cart_checkout_form_alter(&$form, &$form_state, $order) {
+    if ($form['panes']['cart']) {
+        $form['panes']['cart']['#title'] = t('<b>Cart</b> contents');
+    }
+
+    if ($form['panes']['delivery']) {
+        $form['panes']['delivery']['#title'] = t('<b>shopping</b> cart');
+        $form['panes']['delivery']['#description'] = t('<h4>SHIPPING ADDRESS</h4>');
+        $form['panes']['delivery']['next']['#value'] = t('Continue');
+        $form['panes']['delivery']['next']['#prefix'] = '<div id="add_btn" class="next-button">';
+        $form['panes']['delivery']['next']['#prefix'] .= '<h6>pinecone home.</h6>';
+        $form['panes']['delivery']['next']['#suffix'] = '</div>';
+    }
+
+    if ($form['panes']['quotes']) {
+        $form['panes']['quotes']['#title'] = t('<b>Shipping</b> quote');
+        $form['panes']['quotes']['next']['#value'] = t('Continue');
+        $form['panes']['quotes']['next']['#prefix'] = '<div id="add_btn" class="next-button">';
+        $form['panes']['quotes']['next']['#prefix'] .= '<h6>you’ve made the right choice.</h6>';
+        $form['panes']['quotes']['next']['#suffix'] = '</div>';
+        $form['panes']['quotes']['quote_button']['#value'] = t('Click to refresh shipping options');
+        //$form['panes']['quotes']['#markup'] = uc_currency_format($order->order_total);
+    }
+
+    if ($form['panes']['billing']) {
+        $form['panes']['billing']['#title'] = t('<b>Billing</b> Address');
+        $form['panes']['billing']['#description'] = t('<h4>BILLING ADDRESS SAME AS SHIPPING?</h4>');
+        $form['panes']['billing']['next']['#value'] = t('Continue');
+        $form['panes']['billing']['next']['#prefix'] = '<div id="add_btn" class="next-button">';
+        $form['panes']['billing']['next']['#prefix'] .= '<h6>almost there.</h6>';
+        $form['panes']['billing']['next']['#suffix'] = '</div>';
+    }
+
+    if ($form['panes']['payment']) {
+        $form['panes']['payment']['#title'] = t('<b>CREDIT</b> card');
+        $form['panes']['payment']['#description'] = t('<h4>PLEASE ENTER CREDIT/DEBIT INFO</h4>');
+        $form['panes']['payment']['next']['#value'] = t('Continue');
+        $form['panes']['payment']['next']['#prefix'] = '<div id="add_btn" class="next-button">';
+        $form['panes']['payment']['next']['#prefix'] .= '<h6>send it home.</h6>';
+        $form['panes']['payment']['next']['#suffix'] = '</div>';
+        $form['panes']['payment']['submit'] = array(
+            '#type' => 'submit',
+            '#value' => t('Checkout'),
+        );
+        $form['panes']['payment']['submit']['#prefix'] = '<div id="add_btn" class="next-button">';
+        $form['panes']['payment']['submit']['#suffix'] = '</div>';
+    }
+
+    return $form;
+}

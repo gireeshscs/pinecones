@@ -1,0 +1,6 @@
+name = "cart in checkout"
+description = "Shows the update cart option on the checkout page"
+package = "EWC"
+core = 6.x
+php = 5.2
+files[] = cart_in_checkout.module

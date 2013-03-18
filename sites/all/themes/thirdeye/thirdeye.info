@@ -1,0 +1,16 @@
+name = thirdeye
+description = Third Eye Theme
+package = Core
+version = VERSION
+core = 7.x
+
+stylesheets[all][] = fonts.css
+stylesheets[all][] = reset.css
+stylesheets[all][] = style.css
+
+regions[menu] = Menu
+regions[hero] = Hero
+regions[content] = Content
+regions[sidebar] = Sidebar
+regions[footer] = Footer
+regions[copyright] = Copyright

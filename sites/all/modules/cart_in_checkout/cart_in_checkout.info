@@ -1,0 +1,7 @@
+name = "Update Cart Quantity in Checkout"
+description = "Shows the update cart form option on the checkout page"
+package = Custom
+version = 7.x-1.1
+core = 7.x
+files[] = cart_in_checkout.module
+files[] = cart_in_checkout.js

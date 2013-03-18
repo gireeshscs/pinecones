@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Example of leveraging Ctools plugin in Ubercart.
+ */
+
+/**
+ * Implementation of hook_ctools_plugin_directory().
+ */
+function uc_ctools_example_ctools_plugin_directory($module, $plugin) {
+  //drupal_set_message('123456');
+  if ($module == 'uc_ctools') {
+    return 'plugins/ubercart/' . $plugin;
+  }
+}

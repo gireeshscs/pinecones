@@ -1,0 +1,110 @@
+/* CSS RESET */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after, q:before, q:after {content: '';	content: none;}
+table {border-collapse: collapse;	border-spacing: 0;}
+h1,h2,h3,h4,h5,h6,strong {font-weight: bold}
+img {vertical-align: bottom;}
+/* END CSS RESET */
+
+/* FLOAT CONTAINER */
+.floatcontainer:after, div.form-item:after {content: "."; display: block; height: 0; font-size: 0; clear: both; visibility: hidden;}
+.floatcontainer, div.form-item {display: inline-block;}
+/* Hides from IE Mac \*/
+* html .floatcontainer, html div.form-item {height: 1%;}
+.floatcontainer, div.form-item {display: block;}
+/* END FLOAT CONTAINER */
+
+html {}
+* {margin: 0px; padding: 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+body {background: #FFF url('images/bg_body.png') repeat-x top left; font-family: 'PT Sans', sans-serif; font-size: 13px; text-align: center;}
+
+#wrapper {width: 960px; margin: 0px auto; text-align: left;}
+
+#header {background: transparent url('images/nav_bg.png') no-repeat bottom left; position: relative; height: 200px; z-index: 2;}
+
+#logo {position: absolute; bottom: 45px; left: 35px;}
+#logo h1 a {display: block; width: 153px; height: 110px; background: transparent url('images/logo.png') no-repeat top left;}
+#logo h1 a:hover {background: transparent url('images/logo.png') no-repeat bottom left;}
+#logo h1 a span {display: none;}
+
+#main_menu {position: absolute; bottom: 80px; text-align: right; width: 100%;}
+#main_menu ul {list-style-type: none;}
+#main_menu ul li {display: inline;}
+#main_menu ul li a {display: inline-block; text-transform: uppercase; color: #777; text-decoration: none; font-size: 19px; margin-right: 80px;}
+#main_menu ul li a:hover {color: #A6BB4F;}
+
+#sub_menu {position: absolute; bottom: 45px; right: 40px; text-align: right;}
+#sub_menu ul {list-style-type: none;}
+#sub_menu ul li {display: inline;}
+#sub_menu ul li a {display: inline-block; text-transform: uppercase; color: #777; text-decoration: none; font-size: 15px; margin-right: 50px;}
+#sub_menu ul li a:hover {color: #A6BB4F;}
+
+#cart_link {position: absolute; bottom: 160px; left: 500px;}
+#cart_link a {display: block; background: transparent url('images/cart_ico.png') no-repeat top left; height: 20px; line-height: 20px; padding-left: 30px; text-transform: uppercase; color: #4F878F;}
+#cart_link a:hover {background: transparent url('images/cart_ico.png') no-repeat bottom left;}
+
+#social_links {position: absolute; bottom: 155px; left: 620px;}
+#social_links ul {list-style-type: none;}
+#social_links ul li {display: inline;}
+#social_links ul li a {display: inline-block; width: 24px; height: 23px; margin-left: 10px;}
+#social_links ul li a span {display: none;}
+#social_links_facebook {background: transparent url('images/fb.png') no-repeat top left;}
+#social_links_twitter {background: transparent url('images/tw.png') no-repeat top left;}
+
+#email_signup {position: absolute; bottom: 155px; left: 710px;}
+#email_signup input {border: 2px solid #C3C3C1; border-radius: 3px; height: 25px; background: #FFF url('images/email_ico.png') no-repeat 5px 5px; padding-left: 25px; color: #C3C3C1; font-style: italic; width: 210px;}
+
+#search {position: absolute; bottom: 10px; right: 42px;}
+#search input {border: 2px solid #C3C3C1; border-radius: 3px; height: 25px; background: #FFF url('images/srch_ico.png') no-repeat 5px 0px; padding-left: 25px; color: #C3C3C1; font-style: italic; width: 200px;}
+
+#hero {margin: -33px 20px 20px 20px; width: 920px; height: 660px; position: relative; z-index: 1;}
+#hero_image ul li img {position: absolute; top: 0px; left: 0px;}
+#hero_blocks {position: absolute; bottom: 10px; left: 10px;}
+#hero_blocks .block {width: 293px; height: 145px; float: left; margin-right: 10px; background: transparent url('images/white-trans-2.png'); border: 1px solid #C3C3C1; border-radius: 5px; position: relative;}
+#hero_blocks .block a {display: block; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; background: transparent url('images/white-trans.png');}
+#hero_blocks .block a:hover {background: none;}
+#hero_blocks .block a span {display: none;}
+#hero_blocks #hero_pendants {width: 100%; height: 100%; background: transparent url('images/pendant-block.jpg'); no-repeat top left;}
+#hero_blocks #hero_story {width: 100%; height: 100%; background: transparent url('images/our-story-block.jpg'); no-repeat top left;}
+#hero_blocks #hero_accessories {width: 100%; height: 100%; background: transparent url('images/accessories-block.jpg'); no-repeat top left;}
+
+#sidebar {width: 185px; float: left;}
+
+#content_row {margin: 0px 20px;}
+
+#content {color: #666; width: 700px; float: right;}
+#content_full {color: #666; width: 920px;}
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {text-transform: uppercase; font-weight: 400; margin-bottom: 21px;}
+#content h1 {font-size: 32px;}
+#content h2 {color: #A6BB4F; font-size: 28px;}
+#content h3 {color: #A6BB4F; font-size: 24px;}
+#content h4 {color: #A6BB4F; font-size: 20px;}
+#content h5 {color: #A6BB4F; font-size: 16px;}
+#content h6 {color: #A6BB4F; font-size: 14px;}
+#content p {font-size: 13px; line-height: 21px; margin-bottom: 21px;}
+
+#back_to_top {text-align: right; margin-right: 40px; margin-bottom: -10px;}
+#back_to_top a {display: inline-block; width: 162px; height: 21px; background: transparent url('images/back_top_btn.png') no-repeat top left;}
+#back_to_top a span {display: none;}
+
+#footer {background: transparent url('images/ftr_separator.png') no-repeat top left; padding-top: 50px; margin-top: 20px; text-align: center;}
+#footer_links ul {list-style-type: none;}
+#footer_links ul li {display: inline;}
+#footer_links ul li a {display: inline-block; color: #777; text-transform: uppercase; font-size: 17px; text-decoration: none; margin: 0px 30px;}
+#copyright {color: #999; margin: 30px 0px;}
+
+
+
+
+
+
+
+
+
+
+
+

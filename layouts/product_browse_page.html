@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<title>Product Browser Page</title>
+<!--[if IE 7]>
+  <style type="text/css">
+  	h1{line-height:17px;}
+		.pb_cell h6{line-height:11px;}
+  </style>
+<![endif]-->
+<!--[if lte IE 9]>
+  <style type="text/css">
+		h1{margin-top: -5px;}
+		h2{margin-top: 18px;}
+    .nav_second li a { line-height:40px;}
+  </style>
+<![endif]-->
+</head>
+<body>
+<!-- ====== START Header ====== -->
+<div class="hdr_wrp wrp">
+  <div class="hdr in clearfix">
+  	<div id="hdr_top" class="clearfix">
+      <input type="text" placeholder="Email Signup" id="hdr_email" />
+      <div id="hdr_social">
+      	<a href="product_browse_page.html#" id="fb"> </a>
+      	<a href="product_browse_page.html#" id="tw"> </a>
+      </div>
+    	<a href="product_browse_page.html#" id="my_card">my cart (3)</a>
+    </div>
+    <div class="clear"></div>
+    <div id="hdr_main" class="clearfix">
+    	<ul id="nav_prime">
+      	<li id="navp1"><a href="product_browse_page.html#">catalog</a></li>
+      	<li id="navp2"><a href="product_browse_page.html#" id="navp_active">products</a></li>
+      	<li id="navp3"><a href="product_browse_page.html#">PINECONE INFO</a></li>
+      	<li id="navp4"><a href="product_browse_page.html#">CONTACT</a></li>
+      </ul>
+    	<div class="clear"></div>
+      <ul class="nav_second" id="nav_second4">
+      	<li><a href="product_browse_page.html#">FOUNDER’S STORY</a></li>
+      	<li><a href="product_browse_page.html#">HISTORY &#38; SYMBOLISM</a></li>
+      	<li><a href="product_browse_page.html#">ECO-RESPONSIBILITY</a></li>
+        <li><a href="product_browse_page.html#">media</a></li>
+      </ul>
+    	<div class="clear"></div>
+      <input type="text" id="hdr_srch" placeholder="Search" />
+      <!--<ul class="nav_second" id="nav_second4">
+      	<li><a href="#">FOUNDER’S STORY</a></li>
+      	<li><a href="#">HISTORY &#38; SYMBOLISM</a></li>
+      	<li><a href="#">ECO-RESPONSIBILITY</a></li>
+        <li><a href="#">media</a></li>
+      </ul>-->
+    	<a href="product_browse_page.html#" id="logo"> </a>
+    </div>
+  </div>
+</div>
+<!-- ====== START Main ====== -->
+<div class="main_wrp wrp">
+  <div class="main in clearfix">
+  	<!-- Start SideBar -->
+  	<div id="sb">
+    	<h6 id="sb_ttl">narrow your search</h6>
+      <ul class="sb_list qaz">
+      	<li class="sb_list_ttl">Pinecone Size</li>
+        <li class="wsx">(Diameter)</li>
+        <li><input type="checkbox" id="" /> <label for="">Mini (.5” - 1” )</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Small (1”- 1.5”)</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Medium (1.5”- 2”)</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Large (2”- 2.5”)</label></li>
+        <li><input type="checkbox" id="" /> <label for="">X-Large (2.5” +)</label></li>
+      </ul>
+      <ul class="sb_list">
+      	<li class="sb_list_ttl">style</li>
+        <li><input type="checkbox" id="" /> <label for="">Natural</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Crushed Crystal</label></li>
+        <li class="open"><input type="checkbox" id="" /> <label for="">Gemstone</label>
+        	<ul class="sb_list_in">
+          	<li><input type="checkbox" id="" /> <label for="">Sugilite</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Tiger's Eye</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Labradorite</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Pietersite</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Kyanite</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Seraphinite</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Moonstone</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Red Coral</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Paua Shell</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Abalone</label></li>
+            <li><input type="checkbox" id="" /> <label for="">Aus. White Opal</label></li>
+          </ul>
+        </li>
+        <li><input type="checkbox" id="" /> <label for="">Natural</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Crushed Crystal</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Gemstone</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Ammonite</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Butterfly Wing</label></li>
+      </ul>
+      <ul class="sb_list">
+      	<li class="sb_list_ttl">color</li>
+        <li><input type="checkbox" id="" /> <label for="">White</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Black</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Red</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Orange</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Yellow</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Green</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Blue</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Purple</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Brown</label></li>
+      </ul>
+      <ul class="sb_list sb_list2">
+      	<li class="sb_list2_ttl">other products</li>
+      	<li class="sb_list_ttl">apparel</li>
+        <li><input type="checkbox" id="" /> <label for="">Hats</label></li>
+        <li><input type="checkbox" id="" /> <label for="">Belt Buckles</label></li>
+      	<li class="sb_list_ttl">supplements</li>
+      </ul>
+      <ul class="sb_list sb_list2">
+      	<li class="sb_list2_ttl" id="sb_my_cart"><a href="product_browse_page.html#">view my cart</a></li>
+      </ul>
+    </div>
+    <!-- End SideBar -->
+    <div class="prod_page" id="pbp">
+    	<h1>collections</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid…unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitati on ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+      <div id="product_browser" class="clearfix">
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/opalite.jpg" width="210" height="228" alt="">
+          </a>
+        	<h6>opalite</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/moonstone.jpg" width="210" height="216" alt="">
+          </a>
+        	<h6>moonstone</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/turquoise.jpg" width="210" height="221" alt="">
+          </a>
+        	<h6>turquoise</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/labradorite.jpg" width="210" height="217" alt="">
+          </a>
+        	<h6>labradorite</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/azurite.jpg" width="210" height="212" alt="">
+          </a>
+        	<h6>Azurite</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/ammonite.jpg" width="210" height="217" alt="">
+          </a>
+        	<h6>ammonite</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/kyanite.jpg" width="210" height="209" alt="">
+          </a>
+        	<h6>Kyanite</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/phosphorous.jpg" width="210" height="224" alt="">
+          </a>
+        	<h6>Phosphorous</h6>
+        </div>
+      	<!--====-->
+      	<div class="pb_cell">
+        	<a href="product_browse_page.html#">
+          	<img src="images/seraphinite.jpg" width="210" height="238" alt="">
+          </a>
+        	<h6>Seraphinite</h6>
+        </div>
+      	<!--====-->
+        <div class="clear"></div>
+        <div id="product_browser_btm" class="clearfix">
+        	<h5>185 items in this category. Showing results 1-50</h5>
+          <ul id="pbp_pagination">
+          	<li><a href="product_browse_page.html#" id="pagination_on">1</a></li>
+          	<li><a href="product_browse_page.html#">2</a></li>
+          	<li><a href="product_browse_page.html#">3</a></li>
+          	<li><a href="product_browse_page.html#">4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ====== END Main ====== -->
+<!-- ====== START Footer ====== -->
+<div class="ftr_wrp wrp">
+  <div class="ftr in">
+    <div id="back_top">
+    	<a href="product_browse_page.html#"> </a>
+    </div>
+    <div id="ftr_separator"> </div>
+    <ul id="ftr_nav" class="clearfix">
+    	<li><a href="product_browse_page.html#" id="ftr_nav1">WHOLESALE</a></li>
+    	<li><a href="product_browse_page.html#" id="ftr_nav2">SHIPPING &#38; RETURNS</a></li>
+    	<li><a href="product_browse_page.html#" id="ftr_nav3">CONTACT</a></li>
+    </ul>
+    <p id="copyright">Copyright &#169; Third Eye Pinecones 2012. All Rights Reserved. </p>
+  </div>
+</div>
+<!-- ====== END Footer ====== -->
+</body>
+</html>

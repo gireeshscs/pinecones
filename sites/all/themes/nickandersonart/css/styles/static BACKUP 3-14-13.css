@@ -1,0 +1,191 @@
+/* 
+    Document   : static.css
+    Created on : 13.03.2013, 10:23:11
+    Author     : sz
+    Description: Styles for static pages
+        
+*/
+body.page-node-38 #content_full, body.page-node-39 #content_full, body.page-node-40 #content_full {
+    width: 860px;
+    margin: 0 auto;
+}
+body.page-node-38 #content_full h1, body.page-node-39 #content_full h1, body.page-node-40 #content_full h1 {
+    display: block;
+}
+body.page-node-38 .group_row_bottom {
+    padding: 40px 0 0;
+}
+#spin_right, .field-name-field-row-top-right .field-item {
+    height: 371px;
+    margin: -21px 0 0;
+    padding-bottom: 50px;
+    position: relative;
+    width: 362px;
+}
+.field-name-field-row-top-right .field-item {
+    width: 325px;
+}
+#spin_cell h2,#care_refr h2, #sizing_wrp h2, #spin_right h2, body.page-node-39 h2, body.page-node-40 h2 {
+    padding-bottom: 8px;
+    margin-top: 10px;
+    color: #A6BB4F;
+    font: 22px/28px 'PT Sans',sans-serif;
+    min-height: 28px;
+    width: 315px;
+    text-transform: capitalize;
+}
+
+#care_refr {
+    float: right;
+    margin: -10px 0 0;
+    width: 432px;
+}
+#care_refr h2 {
+    padding-bottom: 6px;
+    width: 432px !important;
+}
+body.page-node-38 #content_full p, body.page-node-39 #content_full p {
+    color: #6E6E6E;
+    font: 13px/20px 'PT Sans',sans-serif;
+    text-align: justify;
+}
+body.page-node-38 .group_row_top_right, body.page-node-39 .group_row_top_left, body.page-node-39 .group_row_middle_right {
+    float: right;
+}
+body.page-node-38 .group_row_top_left, body.page-node-38 group_row_bottom_left, body.page-node-38 .group_row_bottom_left img {
+    float: left;
+}
+body.page-node-39 .group_row_middle_left {
+    width: 326px;
+    float: left;
+    margin-right: 50px;
+}
+body.page-node-39 .group_row_top_right, body.page-node-39 .group_row_bottom_left {
+    float: left;
+}
+.group_row_middle .field {
+    display: inline-block;
+}
+.field-name-field-row-top-left .field-item {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C2C2C2;
+    border-radius: 10px 10px 10px 10px;
+    height: 380px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 420px;
+    z-index: 110;
+    box-shadow: 0 20px 20px #CECECE;    
+}
+
+body.page-node-39 .field-name-field-row-top-left .field-item {
+    width: 485px;
+    height: 390px;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+body.page-node-39 .group_row_bottom_right {
+    padding: 60px 0 0;
+    width: 482px !important;
+    float: right;
+    margin-left: 60px;
+}
+body.page-node-39 .group_row_bottom {
+    display: inline-block;
+    margin-bottom: 70px;
+    margin-top: 40px;
+}
+.group_row_middle {
+    display: inline-block;
+    padding-top: 40px;
+}
+#add_btn_pin {
+    background: url("../styles/images/add_to_cart_btn.png") no-repeat scroll 0 0 transparent;
+    color: #5E6B1A;
+    display: block;
+    font: 18px/93px 'PT Sans',sans-serif;
+    height: 90px;
+    padding: 0 0 96px 64px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    text-transform: uppercase;
+    width: 235px;
+}
+#care_refr #add_btn_pin {
+    margin-left: 20px !important;
+}
+#add_btn_pin:hover {
+    background-position: 0 100%;
+    text-decoration: none;
+}
+body.page-node-40 .field-group-format {
+    display: inline-block;
+}
+.field-name-field-text-1, .field-name-field-image-2, .field-name-field-image-4, .field-name-field-image-4,
+.field-name-field-text-6, .field-name-field-image-7, .field-name-field-text-8-left, .field-name-field-text-9, .field-name-field-image-10 {
+   float: left; 
+}
+.field-name-field-image-1, .field-name-field-image-6, .field-name-field-image-9 {
+    width: 418px;
+    float: right;
+    margin: 0 0 20px 40px;    
+}
+.field-name-field-image-10 {
+    width: 548px;
+    float: left;
+}
+.field-name-field-image-9 img {
+    text-align: inherit;
+}
+.field-name-field-image-9 {
+    width: 260px;
+}
+.field-name-field-text-9 {
+    width: 535px;
+}
+.field-name-field-text-1, .field-name-field-text-6 {
+    width: 400px;
+}
+.field-name-field-image-2, .field-name-field-image-4, .field-name-field-image-7, .field-name-field-image-10 {
+    margin: 20px 38px 0 0;    
+}
+.field-name-field-text-2, .field-name-field-text-4, .field-name-field-text-10 {
+    float: right;
+    width: 300px;
+}
+.field-name-field-text-10 {
+    width: 270px;
+}
+.field-name-field-text-7 {
+    width: 500px;
+    padding-top: 50px;
+    float: right;
+}
+field-name-field-text-5-wide {
+    margin-top: 20px;
+}
+.field-name-field-text-8-left {
+    border-right: 2px solid #E5E5E5;
+    padding: 0 34px 0 0;
+    clear: none !important;
+    float: left !important;
+    position: relative;
+    text-align: left !important;
+    width: 394px;    
+}
+.field-name-field-text-8-right {
+    border-left: 2px solid #E5E5E5;
+    left: -2px;
+    padding: 0 0 0 34px;
+    clear: none !important;
+    float: left !important;
+    position: relative;
+    text-align: left !important;
+    width: 394px;
+    float: right;
+}
+.group_row_8, .group_row_9, .group_row_5 {
+    margin-top: 30px;
+}
