@@ -75,29 +75,31 @@ function custom_uc_cart_review_table($variables) {
     $display_items = entity_view('uc_order_product', $items, 'cart');
     if (!empty($display_items['uc_order_product'])) {
         foreach ($data as $key) {
-            // Find Attribute name by id
-            foreach ($key->attributes as $attrib) {
-                foreach ($attrib->options as $list_options) {
-                    //print $list_options->name . '<br/>';
-                }
-            }
-            $aid = $attrib->aid;
             
-            if ($key->data['attributes']) {
-                foreach ($key->data['attributes'] as $oid => $id) {
-                    foreach ($id as $name_id) {
-                        //Nothing here. Just initiate $name_id
+            // Find Attribute name by id
+            if(isset($key->attributes)){
+                foreach ($key->attributes as $attrib) {
+                    foreach ($attrib->options as $list_options) {
+                        //print $list_options->name . '<br/>';
                     }
                 }
+                $aid = $attrib->aid;
+
+                if ($key->data['attributes']) {
+                    foreach ($key->data['attributes'] as $oid => $id) {
+                        foreach ($id as $name_id) {
+                            //Nothing here. Just initiate $name_id
+                        }
+                    }
+                }
+                $attribute_name = db_select('uc_attribute_options', 'op')
+                        ->fields('op', array('name'))
+                        ->condition('oid', $oid)
+                        ->execute()
+                        ->fetchField();
+            //end find attribute;
             }
-            $attribute_name = db_select('uc_attribute_options', 'op')
-                    ->fields('op', array('name'))
-                    ->condition('oid', $oid)
-                    ->execute()
-                    ->fetchField();
-
-            //end;
-
+            
             $rm = $key->cart_item_id;
             $images = field_get_items('node', $key, 'uc_product_image');
             //$qty = $key->qty;
