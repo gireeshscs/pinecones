@@ -263,11 +263,11 @@ function nickandersonart_uc_cart_block_content() {
             $item_count += $item->qty;
           }
               }
-          if ($item_count > 0) {    
+          //if ($item_count > 0) {    
                 if (variable_get('uc_checkout_enabled', TRUE)) {
                   $output .= l(t('MY CART (' . $item_count . ')'), 'cart/checkout', array('rel' => 'nofollow'));
                 }
-          }      
+          //}      
         return $output;
 }
 
