@@ -116,7 +116,7 @@ function custom_uc_cart_review_table($variables) {
             $subtotal += $total * ($key->qty);
 
             $description = '<div class="prod_info">';
-            if ($name_id) {
+            if (isset($name_id)) {
                 $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>
                  <a class="attribute_name colorbox-inline" href="' . $GLOBALS['base_root'] . '/attribute/' . $key->cart_item_id . '?width=260&height=220">' . $span_attr . ' (' . $name_id . ')</a>';
             } elseif ($key->data['attributes'] == TRUE) { //if true - show attibute name
@@ -298,13 +298,16 @@ function custom_also() {
 function custom_similar_pieces() {
     $node = node_load(arg(1));
     $i = 0;
-    if(isset($node->field_style)) {
-        foreach ($node->field_style as $style) {
-            $link = $GLOBALS['base_root'] . '/products?field_style_tid[]=' . $style[$i]['tid'];
+    
+    if($node->field_style) {
+        if(isset($node->field_style)) {
+            foreach ($node->field_style as $style) {
+                $link = $GLOBALS['base_root'] . '/products?field_style_tid[]=' . $style[$i]['tid'];
+            }
         }
     }
-    print $link;
-
+        print $link;
+    
     return;
 }
 

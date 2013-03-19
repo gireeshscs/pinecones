@@ -172,14 +172,14 @@ p {
     box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.05);
 }
 */
-#edit-field-style-tid-wrapper, #edit-field-color-tid-wrapper {
+#edit-field-style-tid-wrapper, #edit-field-color-tid-wrapper, #edit-field-size-tid-wrapper {
     display: block;
     width: 152px;
     margin: 10px 0 0 17px;
     overflow: hidden;
     border-top: 2px solid #d7e1b0;    
 }
-#edit-field-style-tid-wrapper label[for=edit-field-style-tid], #edit-field-color-tid-wrapper label[for=edit-field-color-tid] {
+#edit-field-style-tid-wrapper label[for=edit-field-style-tid], #edit-field-color-tid-wrapper label[for=edit-field-color-tid], #edit-field-size-tid-wrapper label[for=edit-field-size-tid] {
     color: #a6bb4f !important;
     font-size: 15px !important;
     text-transform: uppercase;
@@ -273,7 +273,7 @@ p {
     display: block;
     min-height: 19px;
     color: #8e8e8e;
-    width: 118px;
+    width: 150px;
     position: relative;
     font: 13px/19px "Trebuchet MS", Arial, Helvetica, sans-serif;    
 }
@@ -379,6 +379,9 @@ ul.bef-tree-child {
 }
 .node-product .add-to-cart, .node-product .sell-price {
     float: right;
+}
+.node-product .add-to-cart {
+    width: 200px;
 }
 .node-product .sell-price .uc-price-label {
     display: none;
@@ -541,8 +544,10 @@ ul.bef-tree-child {
     height: 150px;
 }
 .field-name-field-facebook-and-pin {
-    float: left;
+    /*float: left;*/
+    display: inline-block;
     margin: 1.5em 0;
+    width: 100px;
 }
 .add-to-cart .field-item {
     margin: 0;
@@ -794,8 +799,12 @@ small {
     margin: 0 0 8px;
     min-height: 80px;
     height: 100px;
-    overflow: hidden;
+    overflow: visible;
     width: 700px;    
+}
+#uc-cart-checkout-form .we_acc {
+    width: 183px;
+    display: inline;
 }
 #uc-cart-checkout-form tr.even {
     background: none;
