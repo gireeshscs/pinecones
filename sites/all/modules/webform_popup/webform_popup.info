@@ -1,0 +1,6 @@
+name = Webform pop-up for contact form.
+description = Show webform in pop-up windows using Chaos Tools (CTools) AJAX
+package = Webform popup
+dependencies[] = webform
+dependencies[] = ctools
+core = 7.x

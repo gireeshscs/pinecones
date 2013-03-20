@@ -1,0 +1,178 @@
+<?php
+
+/**
+ *  Implementation of hook_menu()
+ */
+function webform_popup_menu() {
+  $items['webform_popup/%ctools_js/contact-us'] = array(
+      'title' => 'Contact us',
+      'page callback' => 'webform_popup_content',
+      'page arguments' => array(1),
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+########################################################################
+// Menu callback
+function webform_popup_content($js = NULL) {
+  $webform_nid = '28'; // Your webform $nid
+  return webform_popup_content_modal($js, $webform_nid);
+}
+
+// Handle CTools modal webforms
+// $webform_nid is the nid of the webform
+function webform_popup_content_modal($js = NULL, $webform_nid = NULL) {
+  $node = node_load($webform_nid); // Load webform node
+  $submission =  (object) array(); // empty object required by webform
+   
+  // React without the modal
+  if (!$js) {
+    // Webform requires more parameters than standard forms
+    return drupal_get_form('webform_client_form_'.$webform_nid, $node, $submission);
+  }
+
+  // React with the modal
+  // Add modal components
+  ctools_include('modal');
+  ctools_include('ajax');
+  $form_state = array(
+    'title' => $node->title,
+    'ajax' => TRUE,
+  );
+  // Emulate ctools_modal_form_wrapper() form modal.inc because webform can not be triggered trough drupal_build_form
+  // If it can, I'd be glad to understand how
+  $form_state += array(
+    're_render' => FALSE,
+    'no_redirect' => !empty($form_state['ajax']),
+  );
+
+  // Fetch webform form stuff
+  $output = drupal_get_form('webform_client_form_'.$webform_nid, $node, $submission);
+  // Merge node content (except webform) and webform form before rendering   
+  $node_view = node_view($node); // Prepare webform for rendering
+  $node_view['body']['#weight'] = -100; // Ensure node body is at the top
+  unset($node_view['webform']); // Prevent displaying twice the webform
+  array_unshift( $output['submitted'], $node_view['body']); // Merge
+  $node->title = ''; // Remove title to prevent displaying twice
+
+  if (!empty($form_state['ajax'])) {
+    $output = ctools_modal_form_render($form_state, $output);
+  }
+  
+  // Handle successful submission through session flag - see 'webform_popup_custom_webform_submit' function below
+  if ( isset($_SESSION['webform_client_form_'.$webform_nid]) && $_SESSION['webform_client_form_'.$webform_nid] == 'submitted') {
+    // Delete session flag   
+    unset($_SESSION['webform_client_form_'.$webform_nid]);
+    // Fetch confirmation message. It will be displayed in the modal window
+    $confirmation['#markup'] =
+      '<div class="popups-confirmation-wrapper">'.
+      check_markup($node_view['#node']->webform['confirmation'], $node_view['#node']->webform['confirmation_format'], '', TRUE).
+      '</div>';   
+    $output = array(); // Recreate output
+    // Overwrite the form output if it was successful.
+    $output[] = ctools_modal_command_display('Confirmation', $confirmation);
+  }
+  
+  // Render output in modal window
+  print ajax_render($output);
+  exit;
+}
+
+// Set a session flag to mark the webform as submitted.
+// This value will be used to trigger display confirmation message in CTools modal window
+function webform_popup_custom_webform_submit($form, $form_state) {
+  if (isset($form['#node']->nid)){
+    $webform_nid = $form['#node']->nid;
+    $_SESSION['webform_client_form_'.$webform_nid] = 'submitted';
+  }
+/*
+  //Close modal after success submit
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  // bounce bounce
+  $commands = array();
+  $commands[] = ctools_ajax_command_reload();
+  print ajax_render($commands);
+  exit;
+*/
+};
+
+########################################################################
+function webform_popup_form_alter(&$form, &$form_state, $form_id){
+  if ($form_id = 'webform_client_form_28'){
+    $form['#submit'][] = 'webform_popup_custom_webform_submit';
+  }
+}
+########################################################################
+function webform_popup_block_info() {
+  $blocks = array();
+  $blocks['webform'] = array(
+    'info' => t('Pop-up webform'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+function webform_popup_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'webform':
+      $block['content'] = webform_popup_block_content();
+      break;
+  }
+  return $block;
+}
+
+function webform_popup_block_content(){
+  // Include the CTools tools that we need.
+  ctools_include('ajax');
+  ctools_include('modal');
+
+  // Add CTools' javascript to the page.
+  ctools_modal_add_js();
+
+  // Create our own javascript that will be used to theme a modal.
+  $sample_style = array(
+    'webform-popup-style' => array(
+      'modalSize' => array(
+        'type' => 'fixed',
+        'width' => 640,
+        'height' => 400,
+        'addWidth' => 20,
+        'addHeight' => 15,
+      ),
+      'modalOptions' => array(
+        'opacity' => .5,
+        'background-color' => '#000',
+      ),
+      'animation' => 'scrollUp',
+      'animationSpeed' => 'slow',
+      'modalTheme' => 'WebformPopupModal',
+      'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'webform_popup'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
+      'closeText' => t('Close'),
+    ),
+  );
+
+  drupal_add_js($sample_style, 'setting');
+
+  // Since we have our js, css and images in well-known named directories,
+  // CTools makes it easy for us to just use them without worrying about
+  // using drupal_get_path() and all that ugliness.
+  ctools_add_js('webform_popup', 'webform_popup');
+  ctools_add_css('webform_popup', 'webform_popup');
+
+  // Create a list of clickable links.
+  $links = array();
+
+  // The extra class points to the info in ctools-sample-style which we added
+  // to the settings, prefixed with 'ctools-modal'.
+  $links[] = ctools_modal_text_button(t('Contact us'), 'webform_popup/nojs/contact-us', t('contact us'),  'ctools-modal-webform-popup-style');
+
+  $output = theme('item_list', array('items' => $links));
+
+  return array('markup' => array('#markup' => $output));
+}

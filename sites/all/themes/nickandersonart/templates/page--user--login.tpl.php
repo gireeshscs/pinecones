@@ -157,6 +157,9 @@
         <?php if($title): ?>
           <h1><?php print $title; ?></h1>
         <?php endif; ?>
+        <?php if ($show_messages && $messages): ?>
+            <div id="lightboxAutoModal" rel="lightmodal[|height: 50px;]" style="display: none;" ><?php print $messages; ?></div>
+        <?php endif; ?>
         <?php print render($page['content']); ?>
         </div><!-- /#content || /#content_full -->
       </div><!-- /#content_row -->

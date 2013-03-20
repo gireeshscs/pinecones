@@ -191,6 +191,9 @@ function custom_form_user_register_form_alter(&$form, &$form_state, $form_id) {
     $form['account']['mail']['#default_value'] = t('Email Signup');
     $form['account']['mail']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Email Signup';}";
     $form['account']['mail']['#attributes']['onfocus'] = "if (this.value == 'Email Signup') {this.value = '';}";
+    $form['actoins']['submit']['#attributes']['onclick'] = "alert('wqer)";
+    //var_dump($form);
+    //die();
     return $form; 
 }
 
@@ -203,6 +206,144 @@ function custom_form_user_register_form_alter(&$form, &$form_state, $form_id) {
  */
 function custom_form_webform_client_form_10_alter(&$form, &$form_state, $form_id) {
     $form['actions']['submit']['#value'] = 'send message';
+    $form['#submit'] = array('webform_client_form_pages', 'custom_form_webform_client_submit');
+}
+
+/**
+ * I just rewrite submit function from webform module
+ * @global type $user
+ * @param type $form
+ * @param type $form_state
+ * @return type
+ */
+function custom_form_webform_client_submit($form, &$form_state){
+ module_load_include('inc', 'webform', 'includes/webform.submissions');
+  module_load_include('inc', 'webform', 'includes/webform.components');
+  global $user;
+  
+  if (empty($form_state['save_draft']) && empty($form_state['webform_completed'])) {
+    return;
+  }
+
+  $node = $form['#node'];
+  $sid = $form_state['values']['details']['sid'] ? (int) $form_state['values']['details']['sid'] : NULL;
+
+  // Check if user is submitting as a draft.
+  $is_draft = (int) !empty($form_state['save_draft']);
+
+  if (!$sid) {
+    // Create a new submission object.
+    $submission = (object) array(
+      'nid' => $node->nid,
+      'uid' => $form_state['values']['details']['uid'],
+      'submitted' => REQUEST_TIME,
+      'remote_addr' => ip_address(),
+      'is_draft' => $is_draft,
+      'data' => webform_submission_data($node, $form_state['values']['submitted']),
+    );
+  }
+  else {
+    // To maintain time and user information, load the existing submission.
+    $submission = webform_get_submission($node->webform['nid'], $sid);
+    $submission->is_draft = $is_draft;
+
+    // Merge with new submission data. The + operator maintains numeric keys.
+    // This maintains existing data with just-submitted data when a user resumes
+    // a submission previously saved as a draft.
+    $new_data = webform_submission_data($node, $form_state['values']['submitted']);
+    $submission->data = $new_data + $submission->data;
+  }
+
+  // If there is no data to be saved (such as on a multipage form with no fields
+  // on the first page), process no further. Submissions with no data cannot
+  // be loaded from the database as efficiently, so we don't save them at all.
+  if (empty($submission->data)) {
+    return;
+  }
+
+  // Save the submission to the database.
+  if (!$sid) {
+    // No sid was found thus insert it in the dataabase.
+    $form_state['values']['details']['sid'] = $sid = webform_submission_insert($node, $submission);
+    $form_state['values']['details']['is_new'] = TRUE;
+
+    // Set a cookie including the server's submission time.
+    // The cookie expires in the length of the interval plus a day to compensate for different timezones.
+    if (variable_get('webform_use_cookies', 0)) {
+      $cookie_name = 'webform-' . $node->nid;
+      $time = REQUEST_TIME;
+      $params = session_get_cookie_params();
+      setcookie($cookie_name . '[' . $time . ']', $time, $time + $node->webform['submit_interval'] + 86400, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+    }
+
+    // Save session information about this submission for anonymous users,
+    // allowing them to access or edit their submissions.
+    if (!$user->uid && user_access('access own webform submissions')) {
+      $_SESSION['webform_submission'][$form_state['values']['details']['sid']] = $node->nid;
+    }
+  }
+  else {
+    // Sid was found thus update the existing sid in the database.
+    webform_submission_update($node, $submission);
+    $form_state['values']['details']['is_new'] = FALSE;
+  }
+
+  // Check if this form is sending an email.
+  if (!$is_draft && !$form_state['values']['details']['finished']) {
+    $submission = webform_get_submission($node->webform['nid'], $sid, TRUE);
+    webform_submission_send_mail($node, $submission);
+  }
+
+  // Strip out empty tags added by WYSIWYG editors if needed.
+  $confirmation = strlen(trim(strip_tags($node->webform['confirmation']))) ? $node->webform['confirmation'] : '';
+
+  // Clean up the redirect URL and filter it for webform tokens.
+  $redirect_url = trim($node->webform['redirect_url']);
+  $redirect_url = _webform_filter_values($redirect_url, $node, $submission, NULL, FALSE, TRUE);
+
+
+  // Remove the domain name from the redirect.
+  $redirect_url = preg_replace('/^' . preg_quote($GLOBALS['base_url'], '/') . '\//', '', $redirect_url);
+
+  // Check confirmation and redirect_url fields.
+  $message = NULL;
+  $redirect = NULL;
+  $external_url = FALSE;
+  if (isset($form['actions']['draft']['#value']) && $form_state['values']['op'] == $form['actions']['draft']['#value']) {
+    $message = t('Submission saved. You may return to this form later and it will restore the current values.');
+  }
+  elseif ($is_draft) {
+    $redirect = NULL;
+  }
+  elseif (!empty($form_state['values']['details']['finished'])) {
+    $message = t('Submission updated.');
+  }
+  elseif ($redirect_url == '<none>') {
+    $redirect = NULL;
+  }
+  elseif ($redirect_url == '<confirmation>') {
+    $redirect = array('node/' . $node->nid . '/done', array('query' => array('sid' => $sid)));
+  }
+  elseif (valid_url($redirect_url, TRUE)) {
+    $redirect = $redirect_url;
+    $external_url = TRUE;
+  }
+  elseif ($redirect_url && strpos($redirect_url, 'http') !== 0) {
+    $parts = drupal_parse_url($redirect_url);
+    $parts['query'] ? ($parts['query']['sid'] = $sid) : ($parts['query'] = array('sid' => $sid));
+    $query = $parts['query'];
+    $redirect = array($parts['path'], array('query' => $query, 'fragment' => $parts['fragment']));
+  }
+
+  // Show a message if manually set.
+  if (isset($message)) {
+    drupal_set_message($message);
+  }
+  // If redirecting and we have a confirmation message, show it as a message.
+  elseif (!$is_draft && !$external_url && (!empty($redirect_url) && $redirect_url != '<confirmation>') && !empty($confirmation)) {
+    drupal_set_message(check_markup($confirmation, $node->webform['confirmation_format'], '', TRUE));
+  }
+  $form_state['redirect'] = $redirect;    
 }
 
 function custom_form_search_form_alter(&$form, &$form_state, $form_id){

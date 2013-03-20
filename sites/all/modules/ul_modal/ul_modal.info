@@ -1,0 +1,9 @@
+; $Id$
+name = User Register Modal
+description = User register form in modal
+package = Custom
+core = 7.x
+dependencies[] = user
+dependencies[] = ctools
+files[] = ul_modal.module
+version = "7.x-dev"

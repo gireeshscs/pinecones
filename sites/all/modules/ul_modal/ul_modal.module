@@ -1,0 +1,133 @@
+<?php 
+
+/**
+* hook_menu()
+*/
+function ul_modal_menu() {
+  $items = array();
+  $items['ul_modal/%ctools_js'] = array (
+    'page callback' => 'ul_modal_ctools_form',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * 
+ * @param type $js
+ * @return type
+ */
+function ul_modal_ctools_form($js = NULL) {
+    //проверяем запрос от js или нет, если нет рендерим форму на странице
+    if (!$js) {
+        return drupal_get_form('user_register_form');
+    }
+    //подключаем  ctools скрипты
+    ctools_include('modal');
+    ctools_include('ajax');
+    ctools_modal_add_js();
+    ctools_add_js("ajax-responder");
+        //прописываем нужные параметры нашей форме 
+    $form_state = array(
+      'title' => t('User register'),
+      'ajax' => TRUE,
+    );
+   //получаем форму форму для вывода через drupal ajax
+    $commands = ctools_modal_form_wrapper('user_register_form', $form_state);
+    //если форма  успешно отправлена
+    if (!empty($form_state['executed'])) {
+      // We'll just overwrite the form output if it was successful.
+       $commands = array();
+      //сообщение об успешной отправке (тайтл, сообщение)
+        $commands[] = ctools_modal_command_display(t("Sending form"), "Registration...");
+      //грубо говоря закрываем форму
+        $commands[] = ctools_ajax_command_reload();
+     }
+    //выводим все в json для ajax
+    print ajax_render($commands);
+    exit;
+}
+
+/**
+ * Add js to page
+ *
+ */
+function ul_modal_init() {
+        //проверяем залогинины или нет, если да то выходим
+        global $user;
+        if ($user->uid != '0') {
+                return ;
+        }
+    //подключаем скрипты
+     // Include the CTools tools that we need.
+        ctools_include('modal');
+       ctools_include('ajax');
+ 
+    // Add CTools' javascript to the page.
+      ctools_modal_add_js();
+        ctools_add_js('ajax-responder');
+  //создаем настройки темы
+    // Create our own javascript that will be used to theme a modal.
+  $modal_style = array(
+    'ul_modal' => array(
+        //можно сделать фиксированный размер окно
+            'modalSize' => array(
+        'type' => 'fixed',
+                                'width' => 500,
+                                'height' => 300,
+            ),
+        'modalOptions' => array(
+        'opacity' => .5,
+        'background-color' => '#000',
+            ),
+            'animation' => 'fadeIn',
+            //название нашей темы
+            'modalTheme' => 'CToolsULModal',
+            //прописываем картинку и тайтл окна для прелоода
+            'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'ul_modal'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
+        ),
+    );
+ //подключаем настройки темы
+  drupal_add_js($modal_style, 'setting');
+  //подключаем наш js
+  ctools_add_js('ul_modal', 'ul_modal');
+ //подключаем наш css
+  ctools_add_css('ul_modal', 'ul_modal');
+}
+
+/**
+ * 
+ * @return string
+ */
+function ul_modal_block_info() {
+        $blocks['ul_modal'] = array(
+                'info' => 'User Register Block Link',
+                'cache' => DRUPAL_NO_CACHE,
+        );
+        return $blocks;
+}
+
+/**
+ * 
+ * @global type $user
+ * @param type $delta
+ * @return type
+ */
+function ul_modal_block_view($delta = '') {
+    global $user;
+    if ($user->uid != '0') {
+            return ;
+    }
+    if ($delta == 'ul_modal') {
+
+        //выводим ссылку, параметры: название ссылки, путь, alt, класс
+        $output = ctools_modal_text_button(t('User register'), 'ul_modal/nojs', t('User register'), 'ctools-modal-ul_modal');
+        $block = array(
+            'title' => '',
+            'content' => $output,
+        );
+    }
+        return $block;
+}
