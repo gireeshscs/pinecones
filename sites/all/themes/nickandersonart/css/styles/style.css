@@ -581,19 +581,26 @@ ul.bef-tree-child {
     padding-right: 10px;
     text-align: end;
 }
+
 #webform-client-form-10 input, #webform-client-form-10 textarea {
-    background: none repeat scroll 0 0 #FFFFFF;
+  /*background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #C3C3C1;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.75) inset;
     color: #252525;
     display: block;
     float: left;
-    font: 14px/23px 'PT Sans',sans-serif;
-    margin: 1px 1px 13px;
     overflow: hidden;
+    font: 14px/23px 'PT Sans',sans-serif;*/
+    margin: 1px 1px 13px;
     padding: 0 10px;
     width: 250px;    
+}
+#webform-client-form-10 input.error, #webform-client-form-10 textarea.error, #webform-client-form-10 select.error {
+    border: 2px solid red;
+}
+#webform-client-form-10 select {
+    box-shadow: none;
 }
 #webform-client-form-10 textarea {
     height: 190px;
