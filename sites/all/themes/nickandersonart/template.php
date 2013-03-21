@@ -255,9 +255,11 @@ function nickandersonart_uc_cart_block_content() {
       $item_count = 0;
         if (!empty($items)) {
           foreach ($items as $item) {
-            if (is_array($item->data['attributes']) && !empty($item->data['attributes'])) {
-              $display_item = module_invoke($item->module, 'cart_display', $item);
-              $output .= '<tr><td colspan="3">' . $display_item['options']['#value'] . '</td></tr>';
+            if (isset($item->data['attributes'])){  
+                if (is_array($item->data['attributes']) && !empty($item->data['attributes'])) {
+                  $display_item = module_invoke($item->module, 'cart_display', $item);
+                  $output .= '<tr><td colspan="3">' . $display_item['options']['#value'] . '</td></tr>';
+                }
             }
             $total += ($item->price) * $item->qty;
             $item_count += $item->qty;

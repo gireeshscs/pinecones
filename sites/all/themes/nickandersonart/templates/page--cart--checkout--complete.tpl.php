@@ -165,11 +165,11 @@
               <p>
               You just planted a tree! Every purchase you make actively supports and pays for the planting of a tree through our partner non-profit American Forests. Thank you for actively helping to support non-profits that lobby and promote for education and policy regarding the proper maintenance of fire-climax ecosystems.
               </p>
-                
               <div id="tell_your_friends">
-                <?php $urlfb = 'http://www.facebook.com/sharer.php?u=' . 'http://' . $_SERVER["HTTP_HOST"] .$node_url;
-                      $urltw = 'https://twitter.com/share?text=' . urlencode($title) . '&url=http://' . $_SERVER["HTTP_HOST"] . $node_url;
-                      $urlpn = 'http://pinterest.com/pin/create/button/?url=' . 'http://' . $_SERVER["HTTP_HOST"] .$node_url . '&media=http://tepnew.nickandersonart.com/sites/default/files/screenshot.png';
+                <?php var_dump(node_load);?>
+                <?php $urlfb = 'http://www.facebook.com/sharer.php?u=' . 'http://' . $_SERVER["HTTP_HOST"] .$node->nid;
+                      $urltw = 'https://twitter.com/share?text=' . urlencode($title) . '&url=http://' . $_SERVER["HTTP_HOST"] . $node->nid;
+                      $urlpn = 'http://pinterest.com/pin/create/button/?url=' . 'http://' . $_SERVER["HTTP_HOST"] .$node->nid . '&media=http://tepnew.nickandersonart.com/sites/default/files/screenshot.png';
                       $urlgp = 'https://plus.google.com/share?url=' . $GLOBALS['base_root'];
                 ?>
                     <h5>tell your friends about your purchase!</h5>

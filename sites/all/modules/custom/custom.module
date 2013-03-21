@@ -58,9 +58,9 @@ function custom_uc_cart_review_table($variables) {
     $we_accept = '<p id="we_accept">' . t('We Acccept:');
     $we_accept .= '<img src=" ' . $GLOBALS['base_root'] . '/sites/default/files/cc_img.png"/></p>';
 
-    $coupons = module_invoke('uc_coupon', 'block_view', 'coupon-discount');
-    $coupon = 'Enter your Coupon Code';
-    $coupon .= '<div class="coup_txt">' . render($coupons['content']) . '</div>';
+    //$coupons = module_invoke('uc_coupon', 'block_view', 'coupon-discount');
+    //$coupon = 'Enter your Coupon Code';
+    //$coupon .= '<div class="coup_txt">' . render($coupons['content']) . '</div>';
 
     $paypall = 'Have a Paypal Account?';
     $paypall_form = drupal_get_form('uc_paypal_ec_form');
@@ -85,8 +85,9 @@ function custom_uc_cart_review_table($variables) {
                 }
                 $aid = $attrib->aid;
 
-                if ($key->data['attributes']) {
+                if (isset($key->data['attributes'])) {
                     foreach ($key->data['attributes'] as $oid => $id) {
+                        $id = array();
                         foreach ($id as $name_id) {
                             //Nothing here. Just initiate $name_id
                         }
@@ -101,7 +102,9 @@ function custom_uc_cart_review_table($variables) {
             }
             
             $rm = $key->cart_item_id;
-            $images = field_get_items('node', $key, 'uc_product_image');
+            if ($key->nid != 0) {
+                $images = field_get_items('node', $key, 'uc_product_image');
+            }
             //$qty = $key->qty;
             $image = $images[0];
             $imagedef = array(
@@ -118,10 +121,11 @@ function custom_uc_cart_review_table($variables) {
             $subtotal += $total * ($key->qty);
 
             $description = '<div class="prod_info">';
+            
             if (isset($name_id)) {
                 $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>
                  <a class="attribute_name colorbox-inline" href="' . $GLOBALS['base_root'] . '/attribute/' . $key->cart_item_id . '?width=260&height=220">' . $span_attr . ' (' . $name_id . ')</a>';
-            } elseif ($key->data['attributes'] == TRUE) { //if true - show attibute name
+            } elseif (isset($key->data['attributes'])) { //if true - show attibute name
                 $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>
                         <a class="attribute_name colorbox-inline" href="' . $GLOBALS['base_root'] . '/attribute/' . $key->cart_item_id . '?width=260&height=220">' . $span_attr . ' (' . $attribute_name . ')</a>';
             } else {
@@ -134,13 +138,16 @@ function custom_uc_cart_review_table($variables) {
             $description .= '<a href=" ' . $GLOBALS['base_root'] . '/shippingreturns "><small>Shipping & Returns</small></a>' . '</div>';
 
             $suffix = !empty($display_item['#suffixes']) ? implode(' ', $display_item['#suffixes']) : '';
-            $rows[] = array(
-                array('data' => $product_image, 'class' => array('product_image')),
-                array('data' => $description, 'class' => array('products')),
-                //array('data' => $qty, 'class' => array('qty')),  
-                array('data' => array('#theme' => 'uc_price', '#price' => $total, '#suffix' => $suffix), 'class' => array('price')),
-                array('data' => l($span_remove . '<img src="' . url(drupal_get_path('module', 'uc_checkout_removebutton') . '/remove_ico.png') . '" alt="' . t('Remove item') . '" />', 'cart/remove/' . $rm, array('html' => TRUE)), 'class' => array('remove')), // Added field  
-            );
+            
+            if ($key->nid != 0) {
+                $rows[] = array(
+                    array('data' => $product_image, 'class' => array('product_image')),
+                    array('data' => $description, 'class' => array('products')),
+                    //array('data' => $qty, 'class' => array('qty')),  
+                    array('data' => array('#theme' => 'uc_price', '#price' => $total, '#suffix' => $suffix), 'class' => array('price')),
+                    array('data' => l($span_remove . '<img src="' . url(drupal_get_path('module', 'uc_checkout_removebutton') . '/remove_ico.png') . '" alt="' . t('Remove item') . '" />', 'cart/remove/' . $rm, array('html' => TRUE)), 'class' => array('remove')), // Added field  
+                );
+            }
         }
     }
 
@@ -189,12 +196,12 @@ function custom_uc_cart_review_table($variables) {
     );
 
     // Add coupons
-    $rows[] = array(
+    /*$rows[] = array(
         'data' => array(
             '#markup' => $coupon,
         ),
         'class' => array('coupon_code'),
-    );
+    );*/
     $rows[] = array(
         'data' => array(
             '#markup' => $next_button,
@@ -368,7 +375,7 @@ function custom_form_uc_cart_checkout_form_alter(&$form, &$form_state, $order) {
     if ($form['panes']['cart']) {
         $form['panes']['cart']['#title'] = t('<b>Cart</b> contents');
     }
-
+    //krumo($form['panes']);
     if ($form['panes']['delivery']) {
         $form['panes']['delivery']['#title'] = t('<b>shopping</b> cart');
         $form['panes']['delivery']['#description'] = t('<h4>SHIPPING ADDRESS</h4>');
@@ -396,7 +403,17 @@ function custom_form_uc_cart_checkout_form_alter(&$form, &$form_state, $order) {
         $form['panes']['billing']['next']['#prefix'] .= '<h6>almost there.</h6>';
         $form['panes']['billing']['next']['#suffix'] = '</div>';
     }
-
+    
+    if($form['panes']['coupon']) {
+        $form['panes']['coupon']['#title'] = t('<b>Coupon</b> Discount');
+        $form['panes']['coupon']['#description'] = t('<h4>Enter your Coupon Code</h4>');
+        $form['panes']['coupon']['next']['#value'] = t('Continue');
+        $form['panes']['coupon']['next']['#prefix'] = '<div id="add_btn" class="next-button">';
+        $form['panes']['coupon']['next']['#prefix'] .= '<h6>your discount.</h6>';
+        $form['panes']['coupon']['next']['#suffix'] = '</div>';
+        
+    }
+    
     if ($form['panes']['payment']) {
         $form['panes']['payment']['#title'] = t('<b>CREDIT</b> card');
         $form['panes']['payment']['#description'] = t('<h4>PLEASE ENTER CREDIT/DEBIT INFO</h4>');
