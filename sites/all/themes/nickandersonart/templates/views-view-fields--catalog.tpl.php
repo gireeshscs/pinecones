@@ -27,7 +27,7 @@
 
 //Wrap model image in a coorbox link
     $nid = $row->nid;
-    $prefix = '<a class="colorbox-node" href="' .$GLOBALS['base_root'] . '/node/' . $nid. '?width=600&height=600">';
+    $prefix = '<a class="colorbox-node" href="' .$GLOBALS['base_root'] . '/node/' . $nid. '?width=600&height=880">';
     $sufix = '</a>';
     $image = $fields['field_image']->content;
     $span = '<span class="gaz">    </span>';
