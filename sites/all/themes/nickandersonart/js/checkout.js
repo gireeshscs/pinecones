@@ -29,8 +29,16 @@
         $("#edit-panes-billing-next").click(function(){
             $("#quotes-pane .fieldset-wrapper").css('display', 'block');
         })
+        
+        //Make coupon-pane collapsed
+        $("#coupon-pane .fieldset-wrapper").css('display', 'none');
+        
+        $("#edit-panes-quotes-next").click(function(){
+            $("#coupon-pane .fieldset-wrapper").css('display', 'block');
+        })
+        
         //hide refresh button (don't need - we use AJAX)
-        $('input#edit-panes-quotes-quote-button').css('display', 'none'); 
+        $('input.#edit-panes-quotes-quote-button').css('display', 'none'); 
         
     });
     

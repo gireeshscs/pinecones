@@ -221,7 +221,7 @@ function custom_theme_registry_alter(&$themes) {
 }
 
 /**
- * 
+ * Print Tolal amounts in the end
  * @param type $variables
  * @return string
  */
@@ -232,12 +232,16 @@ function custom_uc_payment_totals($variables) {
     $output = '<table id="uc-order-total-preview">';
 
     foreach ($line_items as $line) {
-        // krumo($line);
+         //krumo($line);
         if (!empty($line['title'])) {
             if ($line['type'] == 'subtotal' || $line['type'] == 'total') {
                 $output .= '<tr><td class="title">' . filter_xss($line['title']) . ':</td>'
                         . '<td class="price">' . theme('uc_price', array('price' => $line['amount'])) . '</td></tr>';
+            } elseif($line['type'] == 'coupon'){
+                $output .='<tr><td class="title">Discount (' . filter_xss($line['title']) . ') :</td>'
+                        . '<td class="price">' . theme('uc_price', array('price' => $line['amount'])) . '</td></tr>';
             } elseif ($line['type'] == 'shipping') {
+            
                 $output .= '<tr><td class="title">Shipping (' . trim(filter_xss($line['title'])) . '):</td>'
                         . '<td class="price">' . theme('uc_price', array('price' => $line['amount'])) . '</td></tr>';
             }

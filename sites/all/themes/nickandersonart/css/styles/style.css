@@ -88,7 +88,7 @@ body #social_links ul {list-style-type: none;padding: 0;margin: 0}
 #content h6, #content_full h6 {color: #A6BB4F; font-size: 14px;}
 #content p, #content_full p {line-height: 20px; margin-bottom: 21px;}
 
-#back_to_top {text-align: right; margin-right: 40px; margin-bottom: -10px;}
+#back_to_top {text-align: right; margin-right: 40px; margin-top:20px; margin-bottom: -10px;}
 #back_to_top a {display: inline-block; width: 162px; height: 21px; background: transparent url('images/back_top_btn.png') no-repeat top left;}
 #back_to_top a span {display: none;}
 
@@ -355,6 +355,9 @@ ul.pager li a, ul.pager li.pager-current {
 }
 ul.pager li.pager-current {
     box-shadow: 0 0 7px #CEE9AD inset;
+}
+ul.pager li.pager-first.first, ul.pager li.pager-last.last {
+display: none;
 }
 .other_products {
     color: #8E8E8E;

@@ -121,6 +121,10 @@
                 //$block = module_invoke('user', 'block_view', 'login');
                 //print render($block['content']);
               ?>
+          <?php if ($show_messages && $messages): ?>
+              <?php print $messages; ?>
+          <?php endif; ?>
+              
           <div id="search">
              <?php $block = module_invoke('search', 'block_view', 'form');
                     print render($block['content']);
