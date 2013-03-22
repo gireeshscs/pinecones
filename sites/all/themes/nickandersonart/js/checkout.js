@@ -38,7 +38,7 @@
         })
         
         //hide refresh button (don't need - we use AJAX)
-        $('input.#edit-panes-quotes-quote-button').css('display', 'none'); 
+        $('input#edit-panes-quotes-quote-button').css('display', 'none'); 
         
     });
     
