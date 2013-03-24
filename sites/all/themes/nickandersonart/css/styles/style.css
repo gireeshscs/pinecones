@@ -84,7 +84,7 @@ body #social_links ul {list-style-type: none;padding: 0;margin: 0}
 #sidebar {width: 185px; float: left;}
 
 #content {color: #666; width: 732px; float: right; padding: 0 0 0 32px;}
-#content_full {color: #666; width: 920px;}
+#content_full {color: #666; width: 100%;padding: 0 4% 0 0;}
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {text-transform: uppercase; font-weight: 400; margin-bottom: 21px;}
 #content_full h1, #content_full h2, #content_full h3, #content_full h4, #content_full h5, #content_full h6 {text-transform: uppercase; font-weight: 400; margin-bottom: 21px;}
 #content h1, #content_full h1 {font-size: 32px;}
@@ -1581,6 +1581,7 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     #search input.form-text{width: 200px}
 }
 @media (max-width: 979px){
+    #content_full {color: #666; width: 100%;padding: 0 0 0 0;}
     #email_signup{position: relative;top: 0;right: 0;left: 0;}
     #search{position: relative;top: 0;right: 0;padding-top: 15px}
     #main_menu{position: relative;top: 0;right: 0;width: auto;text-align: left}
@@ -1617,6 +1618,8 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .view-catalog .model-row{margin: 2%}
     .views-exposed-form .views-exposed-widget{float: none;padding: 0;margin: 0}
 
+    #eco img {width: 40%!important;padding: 0;margin: 5%;}
+    body #eco_video{width: auto!important;height: auto!important;float: none!important}
 }
     /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
@@ -1625,6 +1628,13 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
 #hero_blocks .block{height: 120px}
 #footer{margin-top: 0;padding-top: 35px}
     .floatcontainer #sidebar{width: 150px}
+    body #eco {
+        width: 739px;
+    }
+    body .eco_cell {
+        width: 739px;
+        padding: 7px 0 0;
+    }
 
 }
 
@@ -1668,6 +1678,12 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
         width: 46%;
     }
     #footer_links ul li a{display: block;margin-top: 10px}
+    #eco .right{float: none!important;width: auto}
+    #eco .left{float: none!important;width: auto}
+    #eco img {width: 60%!important;padding: 0;margin: 5%;float: none!important;}
+    #eco #eco_cell3 div{width: 100%!important}
+    #eco, #eco .eco_cell{width: 100%!important;text-align: center}
+    #eco_cell3 div h2 {width: auto!important;}
 }
 
 /* Landscape phones and down */
@@ -1681,4 +1697,5 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     #email_signup input{width: 100%}
     .heroWrapp{padding: 0}
     #hero_blocks .block{width: 85%;max-width: 300px}
+    #content_full {color: #666; width:auto!important;padding: 0 4% 0 4%;}
 }
