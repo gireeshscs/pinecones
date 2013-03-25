@@ -1570,7 +1570,12 @@ div#content{margin-top:10px; padding-left:0}
 
 div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bottom:0}
 
-
+/*.node-type-static-history-and-symbolism #content_full{padding: 0;width: 100%!important;}
+.field-name-field-text-1, .field-name-field-text-6{width: 45%!important; }
+.field-name-field-image-1, .field-name-field-image-6, .field-name-field-image-9 {float: right;margin: 0 0 20px 5%!important;width: 50%!important;}
+.field-name-field-image-2, .field-name-field-image-4, .field-name-field-image-7, .field-name-field-image-10{margin: 20px 4% 0 0!important;}
+.field-name-field-text-2, .field-name-field-text-4, .field-name-field-text-10{width: 41%!important;}
+.field-name-field-image-2, .field-name-field-image-4, .field-name-field-image-7, .field-name-field-image-10{margin: 20px 38px 0 0;}*/
 
 /* Large desktop */
 @media (min-width: 1200px) {
@@ -1620,6 +1625,16 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
 
     #eco img {width: 40%!important;padding: 0;margin: 5%;}
     body #eco_video{width: auto!important;height: auto!important;float: none!important}
+
+    #webform-client-form-10 .ttl_sb{float: none }
+    #webform-client-form-10 .content2{width: 100% }
+    #webform-client-form-10 .content2_main{float: none ;width: auto;border: none}
+
+    #pi, #pi_btm_cell{width: auto!important;}
+    #pi_btm_cell .left {width: 60%;float: none;}
+    #pi_btm_cell{text-align: center}
+    #care_refr{width: 100%!important;float: none!important;}
+    #care_refr h2{text-align: left}
 }
     /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
@@ -1636,12 +1651,15 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
         padding: 7px 0 0;
     }
 
+
 }
 
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
+    body{overflow-x: hidden}
     #wrapper{width: 100%!important;}
+    #webform-client-form-10 .content2_main{padding: 0}
     .heroWrapp{padding: 0}
     #hero_blocks .block {
         width: 300px;
@@ -1684,6 +1702,12 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     #eco #eco_cell3 div{width: 100%!important}
     #eco, #eco .eco_cell{width: 100%!important;text-align: center}
     #eco_cell3 div h2 {width: auto!important;}
+    #webform-client-form-10 .webform-component{padding-left: 23px}
+
+    #spin_area{float: none!important;width: 100%}
+    #sizing_img{height: auto!important;}
+    #spin_box > iframe{width: 100%!important;}
+    #spin_box > iframe .view{width: 100%!important;}
 }
 
 /* Landscape phones and down */
@@ -1695,7 +1719,19 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .region-hero-blocks  div > div {background-size: 100% 100%!important; background-position: center center}
     #search input.form-text{width: 100%;}
     #email_signup input{width: 100%}
+    #sidebar{margin: 10px 0}
     .heroWrapp{padding: 0}
     #hero_blocks .block{width: 85%;max-width: 300px}
     #content_full {color: #666; width:auto!important;padding: 0 4% 0 4%;}
+    #webform-client-form-10 h4{width: auto;text-align: center}
+    #webform-client-form-10 .webform-component{padding: 0}
+    #webform-client-form-10 input, #webform-client-form-10 textarea{width: 100%}
+    #webform-client-form-10 label{float: none;width: auto;text-align: left}
+    #webform-client-form-10 textarea{max-width: 100%;min-width: 100%}
+    #edit-submitted-subject{width: 100%;margin-bottom: 15px}
+    #edit-actions{text-align: center}
+    #webform-client-form-10 input[type="submit"]{height: 96px !important;width: 231px !important;margin: 0 auto;background-size: 100%!important;float: none}
+    #care_refr{float: none!important;width: auto!important;}
+    #pi_btm_cell .left{float: none;width: 100%}
+    body #care_refr h2{width: auto!important;}
 }
