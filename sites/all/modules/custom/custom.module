@@ -51,8 +51,9 @@ function custom_uc_cart_review_table($variables) {
     $data = uc_cart_get_contents();
     $items = $variables['items'];
     $show_subtotal = $variables['show_subtotal'];
+    
     $continue_shopping = $form['actions']['continue_shopping'] = array(
-        '#markup' => '<span class="cont_shop">' . l(t('Continue shopping'), uc_cart_continue_shopping_url()) . '</span>',
+        '#markup' => '<span class="cont_shop">' . l(t('Continue shopping'), $GLOBALS['base_root'] . '/products') . '</span>',
     );
 
     $we_accept = '<p id="we_accept">' . t('We Acccept:');
@@ -75,9 +76,9 @@ function custom_uc_cart_review_table($variables) {
     $display_items = entity_view('uc_order_product', $items, 'cart');
     if (!empty($display_items['uc_order_product'])) {
         foreach ($data as $key) {
-            
+           // krumo($key);
             // Find Attribute name by id
-            if(isset($key->attributes)){
+            if($key->attributes == TRUE){
                 foreach ($key->attributes as $attrib) {
                     foreach ($attrib->options as $list_options) {
                         //print $list_options->name . '<br/>';
@@ -85,12 +86,13 @@ function custom_uc_cart_review_table($variables) {
                 }
                 $aid = $attrib->aid;
 
-                if (isset($key->data['attributes'])) {
+                if ($key->data['attributes'] == TRUE) {
                     foreach ($key->data['attributes'] as $oid => $id) {
-                        $id = array();
-                        foreach ($id as $name_id) {
-                            //Nothing here. Just initiate $name_id
-                        }
+                        if(!empty($id)) {
+                            foreach ($id as $name_id) {
+                                //Nothing here. Just initiate $name_id
+                            }
+                        }    
                     }
                 }
                 $attribute_name = db_select('uc_attribute_options', 'op')
@@ -125,7 +127,7 @@ function custom_uc_cart_review_table($variables) {
             if (isset($name_id)) {
                 $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>
                  <a class="attribute_name colorbox-inline" href="' . $GLOBALS['base_root'] . '/attribute/' . $key->cart_item_id . '?width=260&height=220">' . $span_attr . ' (' . $name_id . ')</a>';
-            } elseif (isset($key->data['attributes'])) { //if true - show attibute name
+            } elseif ($key->data['attributes'] == TRUE) { //if true - show attibute name
                 $description .= '<a target="_blank" href=" ' . $GLOBALS['base_root'] . '/node/' . $key->nid . ' "><b>' . $key->title . '</a></b>
                         <a class="attribute_name colorbox-inline" href="' . $GLOBALS['base_root'] . '/attribute/' . $key->cart_item_id . '?width=260&height=220">' . $span_attr . ' (' . $attribute_name . ')</a>';
             } else {
@@ -333,7 +335,8 @@ function nickandersonart_recently_read_item($variables) {
     $item = $variables['item'];
     $node = node_load($item['nid']);
     if ($node->type == 'product') {
-        $image = render(field_view_field('node', $node, 'uc_product_image', array('label' => 'hidden')));
+        $image_field = field_view_field('node', $node, 'uc_product_image', array('label' => 'hidden'));
+        $image = render($image_field);
     }
     $output = '<a href="' . $GLOBALS['base_root'] . '/node/' . $item['nid'] . '">' . $image . '</a>';
     $output .= l($item['title'], 'node/' . $item['nid']);
@@ -380,7 +383,7 @@ function custom_form_uc_cart_checkout_form_alter(&$form, &$form_state, $order) {
         $form['panes']['cart']['#title'] = t('<b>Cart</b> contents');
     }
     //krumo($form['panes']);
-    if ($form['panes']['delivery']) {
+    if (isset($form['panes']['delivery'])) {
         $form['panes']['delivery']['#title'] = t('<b>shopping</b> cart');
         $form['panes']['delivery']['#description'] = t('<h4>SHIPPING ADDRESS</h4>');
         $form['panes']['delivery']['next']['#value'] = t('Continue');
@@ -389,7 +392,7 @@ function custom_form_uc_cart_checkout_form_alter(&$form, &$form_state, $order) {
         $form['panes']['delivery']['next']['#suffix'] = '</div>';
     }
 
-    if ($form['panes']['quotes']) {
+    if (isset($form['panes']['quotes'])) {
         $form['panes']['quotes']['#title'] = t('<b>Shipping</b> quote');
         $form['panes']['quotes']['next']['#value'] = t('Continue');
         $form['panes']['quotes']['next']['#prefix'] = '<div id="add_btn" class="next-button">';
