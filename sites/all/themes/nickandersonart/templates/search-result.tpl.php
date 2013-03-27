@@ -70,7 +70,7 @@
   <h3 class="title"<?php print $title_attributes; ?>>
     <a href="<?php print $url; ?>"><?php print $title; ?></a>
     <br/>
-    <?php if($image):?>
+    <?php if(isset($image)):?>
         <div class="search-image"><?php print render($image[0]);?></div>
     <?php endif; ?>
   </h3>

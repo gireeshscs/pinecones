@@ -57,6 +57,7 @@ body #social_links ul {list-style-type: none;padding: 0;margin: 0}
 #social_links ul li a span {display: none;}
 #social_links_facebook {background: transparent url('images/fb.png') no-repeat top left;}
 #social_links_twitter {background: transparent url('images/tw.png') no-repeat top left;}
+#social_links_pin {background:transparent url('/sites/default/files/pinterest-top-site.png') no-repeat top left;}
 
 #email_signup {position: absolute; bottom: 135px; left: 710px;}
 #email_signup input {border: 2px solid #C3C3C1; border-radius: 3px; height: 25px; background: #FFF url('images/email_ico.png') no-repeat 5px 5px; padding-left: 25px; color: #C3C3C1; font-style: italic; width: 210px;margin-bottom: 0;}
@@ -1570,6 +1571,7 @@ div#content{margin-top:10px; padding-left:0}
 
 div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bottom:0}
 
+<<<<<<< HEAD
 /*.node-type-static-history-and-symbolism #content_full{padding: 0;width: 100%!important;}
 .field-name-field-text-1, .field-name-field-text-6{width: 45%!important; }
 .field-name-field-image-1, .field-name-field-image-6, .field-name-field-image-9 {float: right;margin: 0 0 20px 5%!important;width: 50%!important;}
@@ -1760,3 +1762,8 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .sidebar_collaps_button{width: 53px;float: right;background: url("../styles/images/collaps_button.png") no-repeat center #ACC85D;z-index: 999;cursor: pointer;}
     #block-views--exp-products-page{float: left;width: 69%;padding-left: 4%;}
 }
+
+#cboxContent p {width:81%}
+
+/*#webform-client-form-10 input, #webform-client-form-10 textarea {margin: 1px 1px 13px;padding: 0 10px;width: 350px;}*/
+

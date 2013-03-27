@@ -447,5 +447,10 @@ field-name-field-text-5-wide {
 	text-decoration: underline;
 }
 /* =================== END ECO Responsibility Page (eco) ========== */
+
 .static-topmargin {margin-top:-10px}
+
+#eco_cell3 img.right {margin-top:65px}
+
+#footer_links ul li a {font-size:18px}
 
