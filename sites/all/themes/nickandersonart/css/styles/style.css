@@ -1571,7 +1571,6 @@ div#content{margin-top:10px; padding-left:0}
 
 div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bottom:0}
 
-<<<<<<< HEAD
 /*.node-type-static-history-and-symbolism #content_full{padding: 0;width: 100%!important;}
 .field-name-field-text-1, .field-name-field-text-6{width: 45%!important; }
 .field-name-field-image-1, .field-name-field-image-6, .field-name-field-image-9 {float: right;margin: 0 0 20px 5%!important;width: 50%!important;}
@@ -1652,7 +1651,22 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     /*COLLECTIONS*/
     #footer_links ul li{display: inline-block}
     #footer_links ul li a{display: block;margin-top: 10px;width: 23%;min-width: 150px;}
-}
+
+    .node-type-product #sidebar{float: none;background: transparent;width: 100%!important;border: none;min-height: 1px!important;}
+    .node-type-product{padding-right:0;padding-left: 0 }
+    .node-type-product #sidebar .block_subject{display: none}
+    .node-type-product #sidebar .you_may_also{display: none}
+    .node-type-product #sidebar .see_also{display: none}
+    .node-type-product #sidebar .recenly_view_title{display: none}
+    .node-type-product #sidebar .recenly{display: none}
+    .node-type-product #sidebar .sb_list4{float: left;margin: 0}
+    .node-type-product #sidebar .cart_block{float: left;margin: 7px 0 0 10%}
+
+    .sb_list4{width: auto}
+    .sb_list4 li{float: left;margin-right: 20px;}
+    .sb_list4 li a{width: auto}
+
+   }
     /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
 #wrapper{ width: 760px;margin: 0 auto}
@@ -1691,10 +1705,6 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .floatcontainer #sidebar .view_all{border-right: 1px solid #cccccc;float: left;width: 42%}
     .floatcontainer #sidebar .view_all a{padding-right: 5%;padding-bottom: 10px}
     #block-views-catalog-block_1, #block-views--exp-catalog-page{background: transparent;min-height: 1px}
-    #views-exposed-form-catalog-page > div{
-        width: 58%;
-        float: right;
-    }
     #block-block-1 {
     }
     .region-topmenu .block, .region-submenu .block, #cart_link .block, .region-hero .block, .region-hero-blocks .block {
@@ -1708,7 +1718,8 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .view-catalog .model-row {
         width: 46%;
     }
-    #footer_links ul li a{display: block;margin-top: 10px}
+    #footer_links ul li{width: 100%}
+    #footer_links ul li a{display: block;margin: 5px auto;width: 50%}
     #eco .right{float: none!important;width: auto}
     #eco .left{float: none!important;width: auto}
     #eco img {width: 60%!important;padding: 0;margin: 5%;float: none!important;}
@@ -1725,6 +1736,11 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .ttl_sb{width: 150px}
     #uc-cart-checkout-form tr{width: 100%}
     .prod_info{width: 350px!important;}
+    .page-catalog #sidebar{border: none}
+    .page-catalog #block-views--exp-catalog-page .view_all{display: none}
+    .page-catalog #block-views--exp-catalog-page .block_subject{display: none}
+    .page-catalog #block-views--exp-catalog-page .bef-select-as-links .form-item > div{float: left;width: 25%;}
+    .page-catalog #block-views--exp-catalog-page .bef-select-as-links .form-item #edit-tid-all{display: none}
 
     /*COLLECTIONS*/
     .page-products #sidebar{width: auto;float: left;background: url("../styles/images/sb_ttl_bg.png") no-repeat scroll 0 0 white!important;}
@@ -1732,6 +1748,19 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .view-display-id-page tr td{height: auto!important;}
     .views-field-title .field-content a{line-height: 12px;}
     /*COLLECTIONS*/
+
+    .node-type-product .node-by-viewer{width: auto!important;float: none;margin: 0;padding: 0}
+    .node-type-product .node-product .group_left{width: 50%!important;}
+    .node-type-product .node-product .field_group_right{width: 45%!important;}
+    .node-type-product #node_product_full_group_left_bottom{float: none;margin: 0 auto;width: 100%}
+    .node-type-product .field-name-field-facebook-and-pin{float: none;margin: 0 auto;width: 100%}
+    .node-type-product .field-name-field-facebook-and-pin .pin_like{float: left;margin-right: 10%;}
+    .node-type-product .field-name-field-facebook-and-pin .fb_iframe_widget{float: left;padding: 1px 10% 1px 0}
+    .node-type-product .field-name-field-facebook-and-pin .twit_like{float: left;}
+    .node-type-product .node-product .add-to-cart{float: left;margin-top: 15px;width: auto;}
+    .node-type-product .cart_block{margin: 0!important;padding: 0;}
+
+
 }
 
 /* Landscape phones and down */
@@ -1761,6 +1790,14 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .page-products .floatcontainer #content{padding-left: 45px}
     .sidebar_collaps_button{width: 53px;float: right;background: url("../styles/images/collaps_button.png") no-repeat center #ACC85D;z-index: 999;cursor: pointer;}
     #block-views--exp-products-page{float: left;width: 69%;padding-left: 4%;}
+    #footer_links ul li a{width: auto}
+    .page-catalog #block-views--exp-catalog-page .bef-select-as-links .form-item > div{float: none;width: 100%}
+    .node-type-product .group-left{float: none;margin: 0;padding: 0}
+    .node-type-product .node-product .group_left{width: 96%!important;padding: 0 2%}
+    .node-type-product .node-product .field_group_right{width: 90%!important;padding: 0 5%;margin: 0}
+    .node-type-product .cart_block{width: 100%;margin: 0!important;padding: 0;float: none!important;}
+    .sb_list4 li{width: 100%}
+
 }
 
 #cboxContent p {width:81%}
