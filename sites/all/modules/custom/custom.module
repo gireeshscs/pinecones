@@ -87,19 +87,23 @@ function custom_uc_cart_review_table($variables) {
                 $aid = $attrib->aid;
 
                 if ($key->data['attributes'] == TRUE) {
-                    foreach ($key->data['attributes'] as $oid => $id) {
-                        if(!empty($id)) {
-                            foreach ($id as $name_id) {
+                   foreach ($key->data['attributes'] as $oid => $id) {
+                        
+                        //var_dump($id);
+                        if(is_array($id)) {
+                            foreach ($id as $name => $name_id) {
                                 //Nothing here. Just initiate $name_id
+                                //ar_dump($name_id);
                             }
                         }    
                     }
-                }
+                
                 $attribute_name = db_select('uc_attribute_options', 'op')
                         ->fields('op', array('name'))
                         ->condition('oid', $oid)
                         ->execute()
                         ->fetchField();
+                }
             //end find attribute;
             }
             
@@ -384,7 +388,7 @@ function custom_form_uc_cart_checkout_form_alter(&$form, &$form_state, $order) {
     }
     //krumo($form['panes']);
     if (isset($form['panes']['delivery'])) {
-        $form['panes']['delivery']['#title'] = t('<b>shopping</b> cart');
+        $form['panes']['delivery']['#title'] = t('<b>shipping</b> address');
         $form['panes']['delivery']['#description'] = t('<h4>SHIPPING ADDRESS</h4>');
         $form['panes']['delivery']['next']['#value'] = t('Continue');
         $form['panes']['delivery']['next']['#prefix'] = '<div id="add_btn" class="next-button">';

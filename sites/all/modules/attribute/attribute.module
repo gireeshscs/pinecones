@@ -36,7 +36,6 @@ function attribute_options_form() {
 
 function attribute_form($form, &$form_state) {
     $form = array();
-
     $item_id = arg(1);
     $items = uc_cart_get_contents();
     foreach ($items as $item) {
@@ -72,9 +71,11 @@ function attribute_form_submit($form, &$form_state) {
             foreach ($item->attributes as $attrib) {
                 foreach ($attrib->options as $list_options) {
                     //Nothing here
+                    //var_dump($list_options); die();
                 }
             }
             $aid = $attrib->aid;
+            
             foreach ($form_state['input']['attributes'] as $option_id) {
                 $oid = $option_id;
             }
@@ -128,9 +129,10 @@ function attribute_form_submit($form, &$form_state) {
                     ->execute();
 
             uc_cart_get_contents(NULL, 'rebuild');
-            if (!strpos(request_uri(), 'cart', -4)) {
+            
+            //if (!strpos(request_uri(), 'cart', -4)) {
                 drupal_set_message(t('Your item(s) have been updated.'));
-            }
+            //}
         }
     }
 

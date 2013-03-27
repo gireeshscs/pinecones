@@ -9,6 +9,7 @@ $(function collapsedTree(){
         $('ul.bef-tree li').children('ul.bef-tree-child').parent().addClass('collapse_filter');
         $('.collapse_filter').find('label').addClass("passive");
             $('.collapse_filter').children('div').children('input').click(function(){
+                
                 $(this).parent('div').parent('.collapse_filter').addClass('parent');
                 $(this).parent('div').parent('.collapse_filter').children('div ul').children('li').addClass('childrens');
            
@@ -17,11 +18,11 @@ $(function collapsedTree(){
            
            $(this).parent('div').parent('.collapse_filter').children('ul.bef-tree-depth-1').slideDown();
            
-           if($(this).prop('checked') == true && $(this).parent('div').parent('.collapse_filter').children('div ul').children('li').find('input').prop('checked') == true){
+           if($(this).prop('checked') === true && $(this).parent('div').parent('.collapse_filter').children('div ul').children('li').find('input').prop('checked') === true){
                     $(this).prop('checked', true);
                     $(this).parent('div').parent('.collapse_filter').children('div ul').children('li').find('input').prop('checked', false);
                 } else {
-                    if($(this).prop('checked') == false && $(this).parent('div').parent('.collapse_filter').children('div ul').children('li').find('input').prop('checked') == false){
+                    if($(this).prop('checked') === false && $(this).parent('div').parent('.collapse_filter').children('div ul').children('li').find('input').prop('checked') === false){
                         $(this).prop('checked', false);
                         $(this).parent('div').parent('.collapse_filter').children('ul.bef-tree-depth-1').slideUp();
                         $(this).parent('div').parent('.collapse_filter').children('div').children('label').toggleClass("passive");
@@ -34,15 +35,21 @@ $(function collapsedTree(){
 
             //when we click on children item - only one must be active 
             
+           
             $('.collapse_filter').children('ul').children('li').find('input').click(function(){
-                    var $parent_input = $(this).parent('div').parent('.childrens').parent('ul').parent('.collapse_filter').children('div').find('input');
+                
+                   var $parent_input = $(this).parent('div').parent('li').parent('ul').parent('.collapse_filter').children('div').children('input');
+                    
+                   $parent_input.prop('checked', true);
                    
-                    if ($parent_input.prop('checked') == false && $('.collapse_filter').children('ul').children('li').find('input').prop('checked') == false) {
+                    if ($parent_input.prop('checked') === false && $('.collapse_filter').children('ul').children('li').find('input').prop('checked') === false) {
                         $parent_input.prop('checked', true);
+                        $parent_input.toggleClass("active");
                     } else {
                         $parent_input.prop('checked', false);
+                        $(this).attr('checked');
                     }
-                    
+                     
             });    
         
         }
