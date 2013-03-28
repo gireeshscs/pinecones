@@ -181,14 +181,14 @@ p {
     box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.05);
 }
 */
-#edit-field-style-tid-wrapper, #edit-field-color-tid-wrapper, #edit-field-size-tid-wrapper {
+#edit-field-style-tid-wrapper, #edit-field-color-tid-wrapper, #edit-field-size-tid-wrapper, #edit-term-node-tid-depth-wrapper {
     display: block;
     width: 152px;
     margin: 10px 0 0 17px;
     overflow: hidden;
-    border-top: 2px solid #d7e1b0;
+    border-top: 2px solid #d7e1b0;    
 }
-#edit-field-style-tid-wrapper label[for=edit-field-style-tid], #edit-field-color-tid-wrapper label[for=edit-field-color-tid], #edit-field-size-tid-wrapper label[for=edit-field-size-tid] {
+#edit-field-style-tid-wrapper label[for=edit-field-style-tid], #edit-field-color-tid-wrapper label[for=edit-field-color-tid], #edit-field-size-tid-wrapper label[for=edit-field-size-tid], #edit-term-node-tid-depth-wrapper label[for=edit-term-node-tid-depth] {
     color: #a6bb4f !important;
     font-size: 15px !important;
     text-transform: uppercase;
@@ -196,7 +196,7 @@ p {
     padding: 5px 0 !important;
     margin: 0 0 5px 0;
     width: 152px !important;
-    font-weight: 700 !important;
+    font-weight: 700 !important;    
 }
 #edit-field-apparel-tid-wrapper label[for=edit-field-apparel-tid], .supplements h6 {
     color: #a6bb4f !important;
@@ -205,7 +205,7 @@ p {
     padding: 5px 0 !important;
     margin: 0 0 5px 0;
     width: 152px !important;
-    font-weight: 700 !important;
+    font-weight: 700 !important;  
 }
 #edit-field-apparel-tid-wrapper, .supplements {
     display: block;
