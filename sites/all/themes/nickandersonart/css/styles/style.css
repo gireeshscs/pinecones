@@ -140,7 +140,7 @@ div.modal-forms-modal-content .popups-container {
 }
 .auth_user, .auth_user a {
     margin-top: 30px;
-    margin-right: 30px;
+    margin-right: 10px;
     color: #4F878F;
     padding-left: 15px;
     text-transform: uppercase;

@@ -46,7 +46,7 @@ $(function collapsedTree(){
                         $parent_input.prop('checked', true);
                         $parent_input.toggleClass("active");
                     } else {
-                        $parent_input.prop('selectedIndex',0);
+                        $parent_input.prop('checked', false);
                         $(this).attr('checked');
                     }
                      
