@@ -53,7 +53,7 @@ body #sub_menu ul {list-style-type: none;padding: 0;margin: 0}
 #social_links {position: absolute; bottom: -48px; left: 598px;}
 body #social_links ul {list-style-type: none;padding: 0;margin: 0}
 #social_links ul li {display: inline;}
-#social_links ul li a {display: inline-block; width: 24px; height: 23px; margin-left: 10px;}
+#social_links ul li a {display: inline-block; width: 24px; height: 24px; margin-left: 10px;}
 #social_links ul li a span {display: none;}
 #social_links_facebook {background: transparent url('images/fb.png') no-repeat top left;}
 #social_links_twitter {background: transparent url('images/tw.png') no-repeat top left;}
