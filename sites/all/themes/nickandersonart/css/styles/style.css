@@ -37,7 +37,7 @@ body {background: #FFF url('images/bg_body.png') repeat-x top left; font-family:
 
 body #main_menu ul {list-style-type: none;margin: 0}
 #main_menu ul li {display: inline;}
-#main_menu ul li a {display: inline-block; text-transform: uppercase; color: #777; text-decoration: none; font-size: 19px; margin-right: 80px;}
+#main_menu ul li a {display: inline-block; text-transform: uppercase; color: #777; text-decoration: none; font-size: 19px; margin-right: 69px;}
 #main_menu ul li a:hover, #main_menu ul li a.active {color: #A6BB4F;}
 
 #sub_menu {position: absolute;right: -14px;text-align: right;top: 139px;}
@@ -46,11 +46,11 @@ body #sub_menu ul {list-style-type: none;padding: 0;margin: 0}
 #sub_menu ul li a {display: inline-block; text-transform: uppercase; color: #777; text-decoration: none; font-size: 16px; margin-right: 39px;}
 #sub_menu ul li a:hover {color: #A6BB4F;}
 
-#cart_link {position: absolute; bottom: -45px; left: 500px;}
+#cart_link {position: absolute; bottom: -45px; left: 307px;}
 #cart_link a {display: block; background: transparent url('images/cart_ico.png') no-repeat top left; height: 20px; line-height: 20px; padding-left: 30px; text-transform: uppercase; color: #4F878F;}
 #cart_link a:hover {background: transparent url('images/cart_ico.png') no-repeat bottom left;}
 
-#social_links {position: absolute; bottom: -48px; left: 598px;}
+#social_links {position: absolute; bottom: -48px; left: 415px;}
 body #social_links ul {list-style-type: none;padding: 0;margin: 0}
 #social_links ul li {display: inline;}
 #social_links ul li a {display: inline-block; width: 24px; height: 24px; margin-left: 10px;}
@@ -1531,7 +1531,7 @@ form tbody {
 	border: none;
 	z-index: 501;
 }
-
+.section-shippingreturns .row{margin-left: 0!important;}
 
 
 
@@ -1567,6 +1567,7 @@ div#content{margin-top:10px; padding-left:0}
 .content2_main .form-item {margin:8px}
 
 div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bottom:0}
+.node-type-static-history-and-symbolism #content_full{padding: 0!important;}
 
 /*.node-type-static-history-and-symbolism #content_full{padding: 0;width: 100%!important;}
 .field-name-field-text-1, .field-name-field-text-6{width: 45%!important; }
@@ -1658,10 +1659,31 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .node-type-product #sidebar .recenly{display: none}
     .node-type-product #sidebar .sb_list4{float: left;margin: 0}
     .node-type-product #sidebar .cart_block{float: left;margin: 7px 0 0 10%}
+    .node-type-product .prod_page{float: none!important;width: 100%!important;}
+    .node-type-product #content{width: 100%!important;}
 
     .sb_list4{width: auto}
     .sb_list4 li{float: left;margin-right: 20px;}
     .sb_list4 li a{width: auto}
+
+    /*SHOPPING CART*/
+    .page-cart-checkout #content_full .fieldset-wrapper{width: 100%;margin: 0!important;padding: 0!important;border: none!important;}
+    .page-cart-checkout .fieldset legend{width: 100%!important;padding: 0!important;margin: 0!important;}
+    .page-cart-checkout .fieldset-wrapper{height: auto!important;}
+    .page-cart-checkout #content_row .prod_img{width: 111px;float: none}
+    .page-cart-checkout #content_row .prod_img a{display: block}
+    .page-cart-checkout #content_row .prod_img .prod_info{width: 100%}
+    .page-cart-checkout #content_row tr b{width: auto!important;}
+    .page-cart-checkout #content_row small{width: auto!important;}
+    .page-cart-checkout #content_row .prod_info{width: auto!important;}
+    .page-cart-checkout .ttl_sb{float: none!important;}
+    .page-cart-checkout tr.subtotal #subtotal-title{width: 80%!important;float: right}
+    .page-cart-checkout #cart_next{float: right!important;}
+    .page-cart-checkout #uc-cart-checkout-form tr{height: auto!important;min-height: 100px}
+    #delivery-pane .form-item-panes-delivery-select-address{padding: 0 0 0 41%!important;}
+    #uc-cart-checkout-form fieldset legend{width: 100%!important;}
+    .uc-store-address-field .form-item label{width: 41%}
+    /*SHOPPING CART*/
 
    }
     /* Portrait tablet to landscape and desktop */
@@ -1758,6 +1780,8 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .node-type-product .cart_block{margin: 0!important;padding: 0;}
 
 
+
+
 }
 
 /* Landscape phones and down */
@@ -1795,6 +1819,23 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .node-type-product .cart_block{width: 100%;margin: 0!important;padding: 0;float: none!important;}
     .sb_list4 li{width: 100%}
 
+    .section-wholesale #content_full img{float: none!important;margin: 0!important;padding: 0!important;width: 100%}
+    .section-shippingreturns .content img{float: none!important;margin: 0 auto!important;width: auto}
+    #delivery-pane .form-item-panes-delivery-select-address{padding: 0!important;}
+    .page-cart-checkout #add_btn h6, .page-cart-checkout .cart_continue_text{float: none!important;text-align: left}
+    html .page-cart-checkout #cart_next{float: none!important;text-align: left;margin: 10px auto!important; }
+    html .page-cart-checkout #content_full{padding: 0!important;}
+    html .page-cart-checkout tr.cont_shop, .page-cart-checkout tr.subtotal {float:none!important; }
+    html .page-cart-checkout .prod_info{padding: 0!important; }
+    .page-cart-checkout #content_row .prod_img{width: 78px}
+    #uc-cart-checkout-form tr td .uc-price{width: 56px;float: none!important;margin: 0!important;}
+    #uc-cart-checkout-form tr.subtotal td{float: none!important;}
+    .uc-store-address-field .form-item label{margin: 0!important;;padding-bottom: 1px!important;width: 100%!important;text-align: left;!important}
+    #uc-cart-checkout-form fieldset #add_btn input[type="submit"]{margin: 10px auto!important;}
+    #quote, #payment-pane #line-items-div{width: auto!important;}
+    fieldset input[type="text"], fieldset textarea, fieldset select, #edit-submitted-subject{width: 100%!important;margin: 0!important;}
+    .subtotal .uc-price{padding: 10px 0 0 10px}
+    #line-items-div{float: none!important;}
 }
 
 #cboxContent p {width:81%}
