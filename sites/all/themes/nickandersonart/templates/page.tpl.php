@@ -116,13 +116,13 @@
                             </div><!-- /#search -->
                             <div id="social_links" class="clearfix">
                                 <ul>
-
                                     <li><a id="social_links_facebook" href="http://www.facebook.com/ThirdEyePinecones"><span>Facebook</span></a></li>
                                     <li><a id="social_links_twitter" href="https://twitter.com/3rdEyePinecones"><span>Twitter</span></a></li>
-                                    <li><a id="social_links_pin" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Ftepnew.nickandersonart.com&media=http%3A%2F%2Ftepnew.nickandersonart.com%2Fsites%2Fdefault%2Ffiles%2Fscreenshot.png" class="pin-it-button" count-layout="horizontal"></a>
+                                    <li><a id="social_links_pin"  href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Ftepnew.nickandersonart.com&media=http%3A%2F%2Ftepnew.nickandersonart.com%2Fsites%2Fdefault%2Ffiles%2Fscreenshot.png" class="pin-it-button" count-layout="horizontal"></a></li>
+                                    <li><iframe class="social_links_fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Ftepnew.nickandersonart.com%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;font=arial&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe></li>
                                 </ul>
-                            </div><!-- /#social_links -->
-
+                            </div>
+                            <!-- /#social_links -->
 
             <div id="main_menu">
                 <?php if($page['topmenu']):?>
@@ -153,19 +153,10 @@
                 <?php endif; ?> 
             <?php endif; ?>    
             <!--If logget in, print username-->
-            
-
-
           </div><!-- /#email_signup -->
-          <?php 
-                //$block = module_invoke('user', 'block_view', 'login');
-                //print render($block['content']);
-              ?>
           <?php if ($show_messages && $messages): ?>
               <div id="lightboxAutoModal" style="display: none;" ><?php print $messages; ?></div>
           <?php endif; ?>    
-
-
         </div><!-- /#header -->
       </div><!-- /#header_row -->
 
@@ -224,3 +215,4 @@
         </div><!-- /#footer -->
       </div><!-- /#footer_row -->
     </div><!-- /#wrapper -->          
+<div id="fb-root"></div>
