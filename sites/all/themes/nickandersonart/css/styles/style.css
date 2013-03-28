@@ -919,10 +919,6 @@ tr.we_acc td, tr.we_acc td p {
     font: 14px/24px 'PT Sans',sans-serif !important;
     text-align: left;
 }
-/*
-#coupon-pane legend {
-    display: none;
-}*/
 #uc-cart-checkout-form #coupon-pane .fieldset-wrapper {
     margin-top: 0;
 }
