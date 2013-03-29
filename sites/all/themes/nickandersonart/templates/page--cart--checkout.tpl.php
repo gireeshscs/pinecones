@@ -187,6 +187,7 @@
         <?php if($title): ?>
           <h1><?php print $title; ?></h1>
         <?php endif; ?>
+        <?php print render($tabs); ?>  
         <?php print render($page['content']); ?>
         </div><!-- /#content || /#content_full -->
       </div><!-- /#content_row -->

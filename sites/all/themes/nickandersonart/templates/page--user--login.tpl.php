@@ -191,6 +191,7 @@
         <?php if($title): ?>
           <h1><?php print $title; ?></h1>
         <?php endif; ?>
+        <?php print render($tabs); ?>  
         <?php if ($show_messages && $messages): ?>
             <div id="lightboxAutoModal" rel="lightmodal[|height: 50px;]" style="display: none;" ><?php print $messages; ?></div>
         <?php endif; ?>

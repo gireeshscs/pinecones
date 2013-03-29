@@ -135,7 +135,7 @@
         $output = field_view_value('node', $node, 'uc_product_image', $image[$key], array(
           'type' => 'image',
           'settings' => array(
-            'image_style' => 'w340', //place your image style here (see available image styles at /admin/config/media/image-styles)
+            'image_style' => 'w330_h400', //place your image style here (see available image styles at /admin/config/media/image-styles)
             //'image_link' => 'content',
           ),
         ));
