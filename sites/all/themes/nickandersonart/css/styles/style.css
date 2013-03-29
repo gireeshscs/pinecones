@@ -1296,7 +1296,7 @@ body #email_signup .form-actions{
     margin-bottom: 23px;
     margin-top: -13px;
     text-transform: uppercase;
-    width: 315px;
+    width: auto;
 }
 .uc-product-node #content h2 {
     margin-top: 10px;
@@ -1770,7 +1770,7 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
 
     .node-type-product .node-by-viewer{width: auto!important;float: none;margin: 0;padding: 0}
     .node-type-product .node-product .group_left{width: 50%!important;}
-    .node-type-product .node-product .field_group_right{width: 45%!important;}
+    .node-type-product .node-product .field_group_right{width: 90%!important;}
     .node-type-product #node_product_full_group_left_bottom{float: none;margin: 0 auto;width: 100%}
     .node-type-product .field-name-field-facebook-and-pin{float: none;margin: 0 auto;width: 100%}
     .node-type-product .field-name-field-facebook-and-pin .pin_like{float: left;margin-right: 10%;}
@@ -1778,7 +1778,7 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     .node-type-product .field-name-field-facebook-and-pin .twit_like{float: left;}
     .node-type-product .node-product .add-to-cart{float: left;margin-top: 15px;width: auto;}
     .node-type-product .cart_block{margin: 0!important;padding: 0;}
-
+    .wrapper_group_right{float:right;width: 45%}
 
 
 
@@ -1836,6 +1836,7 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     fieldset input[type="text"], fieldset textarea, fieldset select, #edit-submitted-subject{width: 100%!important;margin: 0!important;}
     .subtotal .uc-price{padding: 10px 0 0 10px}
     #line-items-div{float: none!important;}
+    .wrapper_group_right{width: 100%!important}
 }
 
 #cboxContent p {width:81%}

@@ -163,10 +163,9 @@
 
             </div>
             <!-- /#email_signup -->
-            <?php
-            //$block = module_invoke('user', 'block_view', 'login');
-            //print render($block['content']);
-            ?>
+            <?php if ($show_messages && $messages): ?>
+              <div id="lightboxAutoModal" style="display: none;" ><?php print $messages; ?></div>
+            <?php endif; ?>  
             <!-- /#search -->
         </div>
         <!-- /#header -->
