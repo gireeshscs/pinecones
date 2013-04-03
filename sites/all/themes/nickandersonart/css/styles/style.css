@@ -1843,3 +1843,86 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
 
 /*#webform-client-form-10 input, #webform-client-form-10 textarea {margin: 1px 1px 13px;padding: 0 10px;width: 350px;}*/
 
+#webform-client-form-94 label {
+    color: #252525;
+    display: block;
+    float: left;
+    font: 14px/27px 'PT Sans',sans-serif;
+    height: 27px;
+    width: 115px;
+    padding-right: 10px;
+    text-align: end;
+}
+
+#webform-client-form-94 input, #webform-client-form-94 textarea {
+  /*background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C3C3C1;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.75) inset;
+    color: #252525;
+    display: block;
+    float: left;
+    overflow: hidden;
+    font: 14px/23px 'PT Sans',sans-serif;*/
+    margin: 1px 1px 13px;
+    padding: 0 10px;
+    width: 250px;
+}
+#webform-client-form-94 input.error, #webform-client-form-94 textarea.error, #webform-client-form-94 select.error {
+    border: 2px solid red;
+}
+#webform-client-form-94 select {
+    box-shadow: none;
+}
+#webform-client-form-94 textarea {
+    height: 190px;
+    line-height: normal;
+    max-height: 190px;
+    max-width: 250px;
+    min-height: 190px;
+    min-width: 250px;
+    padding: 5px 10px;
+}
+#webform-client-form-94 .grippie {
+    display: none;
+}
+.ask_us {
+    color: #665665;
+    float: left;
+    font: 22px 'PT Sans',sans-serif;
+    padding: 50px 0 0;
+    text-align: right;
+    text-transform: uppercase;
+    width: 233px;
+}
+#webform-client-form-94 #edit-submit {
+    background: url("../styles/images/add_to_cart_btn.png") no-repeat scroll 0 0 transparent;
+    color: #5E6B1A;
+    display: block;
+    font: 18px/93px 'PT Sans',sans-serif;
+    height: 90px;
+    padding: 0 0 6px 83px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    text-transform: uppercase;
+    width: 148px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+#webform-client-form-94 #edit-submit:hover {
+    background-position: 0 100%;
+}
+#webform-client-form-94 input[type="submit"] {
+    float: left;
+    height: 96px !important;
+    margin: 6px 0 0 41px;
+    width: 231px !important;
+}
+#webform-client-form-94 input[type="text"], #webform-client-form-94 input[type="email"] {
+    height: 23px;
+}
+#webform-client-form-94 .webform-component {
+    padding-left: 140px;
+}
+
