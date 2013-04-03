@@ -1847,6 +1847,8 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
 
 /*#webform-client-form-10 input, #webform-client-form-10 textarea {margin: 1px 1px 13px;padding: 0 10px;width: 350px;}*/
 
+/*Added by Gireesh for changing the wholesale request webform*/
+
 #webform-client-form-94 label {
     color: #252525;
     display: block;
@@ -1930,3 +1932,89 @@ div.form-item.form-type-radios.form-item-attributes-1 {margin-top:0; margin-bott
     padding-left: 140px;
 }
 
+/*Added by Gireesh for changing the pagination style*/
+/*pagination*/
+ul.pager {
+	border:0px solid #000000;
+    clear: both;
+    color: #666666;
+    display: table;
+    height: 100px;
+	width:700px;
+    padding: 15px 5px 0;
+    display: table-cell;
+    vertical-align: middle;
+	border:none;
+	list-style-type: none; 
+	text-decoration: none !important;
+}
+ul.pager li {
+  margin-bottom:0;font-size:1.2em;padding:0 8px;list-style:none;position:relative;float:none;
+  padding: 0px 5px 0px 0px;
+  clear:both;
+}
+ul.pager li, ul.pager li a {
+
+    font-size: 1.2em;
+    list-style: none outside none;
+	 padding: 0px 5px 0px 0px;
+    padding: 0 8px;
+	
+}
+ul.pager li a, ul.pager li.pager-current {
+  
+}
+ul.pager li.pager-current {
+    
+	
+}
+ul.pager li.pager-first.first, ul.pager li.pager-last.last {
+
+}
+
+.pager li > a, .pager li > span, .pager li > a:hover, .pager li > span:hover {
+   
+}
+ul.pager li.pager-next{
+	border:0px solid #000000;
+	clear:both;
+	padding-top:5px;
+	/*background: url("../styles/images/icon_page_arrow_right_on.20130328183237.gif") no-repeat scroll 0 0 transparent;*/
+	opacity:1;
+	z-index:1111px;
+	position:absolute;float:none;
+	width:700px;
+	display: table-cell;
+	padding-left:45px;
+}
+ul.pager li.pager-last{
+	display:none;
+}
+
+ul.pager li.pager-previous{
+	clear:both;
+	padding-top:26px;
+	/*background: url("../styles/images/icon_page_arrow_left_on.20130328183237.gif") repeat scroll 0 0 transparent;*/
+	opacity:1;
+	z-index:1111px;
+	position:absolute;float:none;
+	width:700px;
+	padding-right:45px;
+	display: table-cell;
+}
+ul.pager li.pager-first{
+	display:none;
+}
+ul.pager li.pager-ellipsis{
+	display:none;
+}
+ul.pager li.pager-item{
+	color: #CB7319;
+    font-weight: bold;
+	background:none;
+	padding:0px;
+	border:none !important;
+}
+div#product_browser_btm h5{
+	display:none;
+}
